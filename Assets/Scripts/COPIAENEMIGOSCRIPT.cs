@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class COPIAENEMIGOSCRIPT : MonoBehaviour
+public class COPIAENEMIGOSCRIPT : MonoBehaviour, IDamageable
 {
 
 
@@ -25,7 +25,6 @@ public class COPIAENEMIGOSCRIPT : MonoBehaviour
     [SerializeField] private float vida;
     private bool estaMuerto = false; 
 
-    // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -125,7 +124,7 @@ public class COPIAENEMIGOSCRIPT : MonoBehaviour
 
     public void ColliderWeaponTrue()
     {
-        if (estaMuerto) return; // Si está muerto, no hacer nada más
+        if (estaMuerto) return; 
         Hit.GetComponent<BoxCollider2D>().enabled = true;
     }
 
@@ -135,7 +134,6 @@ public class COPIAENEMIGOSCRIPT : MonoBehaviour
         Hit.GetComponent<BoxCollider2D>().enabled = false;
     }
 
-    // Update is called once per frame
     void Update()
     {
         Comportamientos();

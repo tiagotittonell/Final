@@ -3711,11 +3711,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3712394655599513477, guid: 0b33738f58425be4ab0d7da90f4f149e, type: 3}
       propertyPath: m_LocalScale.x
-      value: 14.354792
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 3712394655599513477, guid: 0b33738f58425be4ab0d7da90f4f149e, type: 3}
       propertyPath: m_LocalScale.y
-      value: 12.721197
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 3712394655599513477, guid: 0b33738f58425be4ab0d7da90f4f149e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3774,8 +3774,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1272325972}
     - target: {fileID: 3712394655599513479, guid: 0b33738f58425be4ab0d7da90f4f149e, type: 3}
+      propertyPath: "da\xF1oAtaque"
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3712394655599513479, guid: 0b33738f58425be4ab0d7da90f4f149e, type: 3}
       propertyPath: radioAtaque
-      value: 2.45
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 3712394655599513499, guid: 0b33738f58425be4ab0d7da90f4f149e, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
@@ -4322,6 +4326,14 @@ PrefabInstance:
     - target: {fileID: 4266101463427528829, guid: 3126a0fc22625c94484549c6b70169b2, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5465446037862246949, guid: 3126a0fc22625c94484549c6b70169b2, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -293.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5465446037862246949, guid: 3126a0fc22625c94484549c6b70169b2, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 123.7
       objectReference: {fileID: 0}
     - target: {fileID: 8980186592358874849, guid: 3126a0fc22625c94484549c6b70169b2, type: 3}
       propertyPath: m_Name
