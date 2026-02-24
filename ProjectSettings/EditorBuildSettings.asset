@@ -12,11 +12,20 @@ EditorBuildSettings:
     path: Assets/Scenes/Nivel 1.unity
     guid: eddb34305f112f14c9c4a7f2e4ccb676
   - enabled: 1
-    path: Assets/Scenes/Nivel2.unity
+    path: Assets/Scenes/Nivel 2.unity
     guid: c8248fece912b7747b629bd0b987ce8f
   - enabled: 1
-    path: Assets/Scenes/Nivel3.unity
+    path: Assets/Scenes/Nivel 3.unity
     guid: bcc0a57079ab6014faed569c61cb299d
+  - enabled: 1
+    path: Assets/Scenes/Nivel 4.unity
+    guid: 059427581fe06374eafd43f9f985d4e6
+  - enabled: 1
+    path: Assets/Scenes/Nivel 5.unity
+    guid: 86d7bc81aa9a08840bb9c453900a2702
+  - enabled: 1
+    path: Assets/Scenes/Nivel 6.unity
+    guid: bb7e538185d5b8d47b5b8cb2f8759f4d
   - enabled: 0
     path: Assets/Scenes/PantallaVictoria.unity
     guid: 05be90da8a6ad5e4796e99ee214c6664

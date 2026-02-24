@@ -1,4 +1,4 @@
-//using System.Collections;
+ï»¿//using System.Collections;
 //using System.Collections.Generic;
 //using UnityEngine;
 
@@ -12,7 +12,7 @@
 
 //    [SerializeField] private Transform controladorGolpe;
 //    [SerializeField] private float radioGolpe;
-//    [SerializeField] private float dañoGolpe;
+//    [SerializeField] private float daÃ±oGolpe;
 //    [SerializeField] private float tiempoEntreAtaques;
 //    [SerializeField] private float tiempoSiguienteAtaque;
 
@@ -51,11 +51,11 @@
 //            if (colisionador.CompareTag("Enemigo"))
 //            {//{
 
-//                colisionador.transform.GetComponent<COPIAENEMIGOSCRIPT>().TomarDaño(dañoGolpe);
+//                colisionador.transform.GetComponent<COPIAENEMIGOSCRIPT>().TomarDaÃ±o(daÃ±oGolpe);
 //            }
 //            else if (colisionador.CompareTag("Boss"))
 //            {
-//                colisionador.transform.GetComponent<Enemigo>().TomarDañoEnemigo(dañoGolpe);
+//                colisionador.transform.GetComponent<Enemigo>().TomarDaÃ±oEnemigo(daÃ±oGolpe);
 //            }
 //        }
 //    }
@@ -79,7 +79,7 @@ public class ControladorPersonaje : MonoBehaviour
 
     [SerializeField] private Transform controladorGolpe;
     [SerializeField] private float radioGolpe;
-    [SerializeField] private float dañoGolpe;
+    [SerializeField] private float daÃ±oGolpe;
     [SerializeField] private float tiempoEntreAtaques;
     [SerializeField] private float tiempoSiguienteAtaque;
 
@@ -114,14 +114,14 @@ public class ControladorPersonaje : MonoBehaviour
                 IDamageable damageable = colisionador.GetComponent<IDamageable>();
                 if (damageable != null)
                 {
-                    damageable.TomarDaño(dañoGolpe);
+                    damageable.TomarDaÃ±o(daÃ±oGolpe);
                 }
                 else
                 {
                     COPIAENEMIGOSCRIPT enemigoViejo = colisionador.GetComponent<COPIAENEMIGOSCRIPT>();
                     if (enemigoViejo != null)
                     {
-                        enemigoViejo.TomarDaño(dañoGolpe);
+                        enemigoViejo.TomarDaÃ±o(daÃ±oGolpe);
                     }
                 }
             }
@@ -130,7 +130,22 @@ public class ControladorPersonaje : MonoBehaviour
                 Enemigo boss = colisionador.GetComponent<Enemigo>();
                 if (boss != null)
                 {
-                    boss.TomarDañoEnemigo(dañoGolpe);
+                    boss.TomarDaÃ±oEnemigo(daÃ±oGolpe);
+                }
+            }
+            else if (colisionador.CompareTag("Bell"))
+            {
+                BellInteractable bell = colisionador.GetComponent<BellInteractable>();
+
+                if (bell != null)
+                {
+                    Debug.Log($"ðŸ”” Campana golpeada: {bell.name}");
+
+                    bell.Hit();
+                }
+                else
+                {
+                    Debug.LogWarning("Campana sin BellInteractable en: " + colisionador.name);
                 }
             }
         }
