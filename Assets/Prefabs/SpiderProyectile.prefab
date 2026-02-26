@@ -115,7 +115,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetTag: PJ
-  speed: 40
+  speed: 35
   lifeTime: 5
   damage: 50
   ignoreTag: Enemigo

@@ -171,8 +171,8 @@ MonoBehaviour:
   rango_ataque: 4
   rango: {fileID: 8192957525983107937}
   Hit: {fileID: 8192957525440672639}
-  rb: {fileID: 0}
-  vida: 100
+  rb: {fileID: 8192957525376447329}
+  vida: 500
 --- !u!1 &8192957525440672639
 GameObject:
   m_ObjectHideFlags: 0

@@ -24,7 +24,7 @@ public class Palanca : MonoBehaviour {
 
     void Update()
     {
-        if (mostrarTexto && Input.GetKeyDown(KeyCode.E))
+        if (mostrarTexto && Input.GetKeyDown(KeyCode.F))
         {
             palancaActivada = !palancaActivada;
 

@@ -1,28 +1,27 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 public class ControladorPantalla : MonoBehaviour
 {
-   
     public void VolverAJugar()
-
-    { 
-        SceneManager.LoadScene("Nivel 1");
-
+    {
+        if (!string.IsNullOrEmpty(GestorEscenas.ultimaEscena))
+        {
+            SceneManager.LoadScene(GestorEscenas.ultimaEscena);
+        }
+        else
+        {
+            SceneManager.LoadScene("Nivel 1");
+        }
     }
-    public void Menu()
 
+    public void Menu()
     {
         SceneManager.LoadScene("Menu");
-
     }
+
     public void SalirDelJuego()
     {
-        // Salir de la aplicación
         Application.Quit();
     }
-
 }

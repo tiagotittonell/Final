@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2238526509726506943}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.0194, y: -0.2186, z: 0}
+  m_LocalPosition: {x: -0.0194, y: -0.19, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 8}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -188,7 +188,6 @@ GameObject:
   - component: {fileID: 2238526510694004943}
   - component: {fileID: 2238526510694004942}
   - component: {fileID: 2238526510694004941}
-  - component: {fileID: 2238526510694004940}
   m_Layer: 7
   m_Name: PJ
   m_TagString: PJ
@@ -322,14 +321,15 @@ MonoBehaviour:
   velocidadRebote: {x: 10, y: 10}
   damage_: 0
   empuje: 0
-  velocidadDeMovimiento: 10
-  suavizadoMovimiento: 0.112
+  velocidadDeMovimiento: 12.5
+  suavizadoMovimiento: 0.192
+  deadzoneVelocidadX: 0.05
   fuerzaSalto: 100000
   queEsSuelo:
     serializedVersion: 2
     m_Bits: 8
   controladorSuelo: {fileID: 2238526509726506942}
-  dimensionCaja: {x: 0.72, y: 0.15}
+  dimensionCaja: {x: 1.09, y: 0.15}
   velocidadDash: 6
   tiempoDash: 0.4
   sePuedeMover: 1
@@ -348,7 +348,7 @@ CapsuleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2238526510694004920}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -364,13 +364,13 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2238526510694004920}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.01987679, y: -0.030649293}
+  m_Offset: {x: -0.01987679, y: -0.03657973}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -381,7 +381,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.12099966, y: 0.29266688}
+  m_Size: {x: 0.12099966, y: 0.30452776}
   m_EdgeRadius: 0
 --- !u!50 &2238526510694004942
 Rigidbody2D:
@@ -421,18 +421,6 @@ MonoBehaviour:
   tiempoPerdidaControl: 1
   vidaMaxima: 100
   fuerzaEmpuje: 10
---- !u!114 &2238526510694004940
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2238526510694004920}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b826ff7d345bd841a5c4499907bc68f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2238526510841352316
 GameObject:
   m_ObjectHideFlags: 0
@@ -922,7 +910,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -334, y: 128.3}
+  m_AnchoredPosition: {x: -667.1, y: 467}
   m_SizeDelta: {x: 526.0887, y: 300.8488}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1687134247470681352
@@ -953,7 +941,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 89c4275ab3300174f9ec8d5330c0c97e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d77e0254b200952499c850cb267f6831, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

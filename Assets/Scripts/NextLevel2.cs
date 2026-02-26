@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class NextLevel2 : MonoBehaviour
 {
-    // Start is called before the first frame update
     void Start()
     {
 
@@ -16,9 +15,7 @@ public class NextLevel2 : MonoBehaviour
         if (collision.CompareTag("PJ"))
         {
 
-
-            SceneManager.LoadScene("Nivel2");
-
+            SceneManager.LoadScene("Nivel 2");
 
         }
     }

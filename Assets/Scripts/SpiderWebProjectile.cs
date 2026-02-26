@@ -30,7 +30,6 @@ public class SpiderWebProjectile : MonoBehaviour
         else
             _dir = Vector2.down;
 
-        // Rotar el sprite en la dirección del disparo
         float angle = Mathf.Atan2(_dir.y, _dir.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0f, 0f, angle);
 
@@ -44,7 +43,6 @@ public class SpiderWebProjectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        // Ignorar a la propia araña y otros enemigos
         if (other.CompareTag(ignoreTag)) return;
 
         if (other.CompareTag(targetTag))
@@ -54,7 +52,6 @@ public class SpiderWebProjectile : MonoBehaviour
                 hp.TomarDañoBarra(damage);
         }
 
-        // Se destruye al chocar con cualquier cosa (jugador, suelo, paredes)
         Destroy(gameObject);
     }
 }

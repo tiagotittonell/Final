@@ -68,7 +68,7 @@ public class DoorController : MonoBehaviour
             return;
         }
 
-        Debug.Log("[DoorController] Cargando escena 'PantallaWin'...");
-        SceneManager.LoadScene("PantallaWin");
+        Debug.Log("[DoorController] Cargando escena 'Nivel 6'...");
+        SceneManager.LoadScene("Nivel 6");
     }
 }

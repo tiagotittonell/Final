@@ -125,9 +125,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetTag: PJ
-  speed: 14
+  speed: 20
   homing: 0
-  turnSpeed: 12
+  turnSpeed: 50
   lifeTime: 5
   damage: 50
   groundTag: Ground
