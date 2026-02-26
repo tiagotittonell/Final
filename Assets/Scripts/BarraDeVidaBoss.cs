@@ -3,15 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class BarraDeVida : MonoBehaviour
+public class BarraDeVidaBoss : MonoBehaviour
 {
 
     private Slider slider;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
-        slider = GetComponent<Slider>();  
+        slider = GetComponent<Slider>();
     }
 
     public void CambiarDeVidaMaxima(float vidaMaxima)
@@ -29,10 +28,5 @@ public class BarraDeVida : MonoBehaviour
     {
         CambiarDeVidaMaxima(cantidadVida);
         CambiarVidaActual(cantidadVida);
-    }
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

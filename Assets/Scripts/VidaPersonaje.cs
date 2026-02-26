@@ -19,7 +19,12 @@ public class VidaPersonaje : MonoBehaviour
     private void Start()
     {
         vida = vidaMaxima;
-        barraVida.InicializarBarraDeVida(vida);
+
+        if (barraVida != null)
+            barraVida.InicializarBarraDeVida(vida);
+        else
+            Debug.LogError("[VidaPersonaje] barraVida no está asignada en el Inspector");
+
         movimientoJugador = GetComponent<MovimientoPersonaje>();
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
@@ -37,9 +42,14 @@ public class VidaPersonaje : MonoBehaviour
         SceneManager.LoadScene("PantallaDerrota");
     }
 
-    public void TomarDañoBarra(float Daño)
+    public void TomarDañoBarra(float daño)
     {
-        vida -= Daño;
+        float vidaAntes = vida;
+
+        vida -= daño;
+
+        Debug.Log("DAMAGE RECIBIDO: " + daño + " vidaAntes=" + vidaAntes + " vidaAhora=" + vida);
+
         barraVida.CambiarVidaActual(vida);
 
         if (vida <= 0)
@@ -52,7 +62,7 @@ public class VidaPersonaje : MonoBehaviour
             return;
         }
 
-        animator.ResetTrigger("Hurt"); 
+        animator.ResetTrigger("Hurt");
         animator.SetTrigger("Hurt");
 
         StartCoroutine(PerderControl());

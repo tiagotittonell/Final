@@ -32,8 +32,8 @@ public class Enemigo : MonoBehaviour
     void Start()
     {
 
-        //vida = vidaMaxima;
-        //barraVida.InicializarBarraDeVida(vida);
+        vida = vidaMaxima;
+        barraVida.InicializarBarraDeVida(vida);
 
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();

@@ -698,7 +698,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: Presiona F para interactuar
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 641c3bd6f8ab00e46bb3dda9c6c409f5, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -762,7 +762,7 @@ MonoBehaviour:
   m_margin: {x: -0.08480072, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &486199707
@@ -5417,6 +5417,14 @@ PrefabInstance:
       value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 3770176059613545963, guid: 3126a0fc22625c94484549c6b70169b2, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 40.0431
+      objectReference: {fileID: 0}
+    - target: {fileID: 3770176059613545963, guid: 3126a0fc22625c94484549c6b70169b2, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: -7.3799
+      objectReference: {fileID: 0}
+    - target: {fileID: 3770176059613545963, guid: 3126a0fc22625c94484549c6b70169b2, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.83
       objectReference: {fileID: 0}
@@ -5426,7 +5434,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3770176059613545963, guid: 3126a0fc22625c94484549c6b70169b2, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 351
+      value: 347
       objectReference: {fileID: 0}
     - target: {fileID: 3770176059613545963, guid: 3126a0fc22625c94484549c6b70169b2, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -6005,7 +6013,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1764621528}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6.959322, y: -33.51287, z: 120.7}
+  m_LocalPosition: {x: -6.9773693, y: -33.51287, z: 120.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

@@ -1,18 +1,32 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class barraDeVida : MonoBehaviour
+public class BarraDeVida : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private Slider slider;
+
+    private void Awake()
     {
-        
+        slider = GetComponent<Slider>();
+        if (slider == null)
+            Debug.LogError("[BarraDeVida] No hay Slider (uGUI) en este GameObject.");
     }
 
-    // Update is called once per frame
-    void Update()
+    public void CambiarDeVidaMaxima(float vidaMaxima)
     {
-        
+        if (slider == null) return;
+        slider.maxValue = vidaMaxima;
+    }
+
+    public void CambiarVidaActual(float cantidadVida)
+    {
+        if (slider == null) return;
+        slider.value = cantidadVida;
+    }
+
+    public void InicializarBarraDeVida(float cantidadVida)
+    {
+        CambiarDeVidaMaxima(cantidadVida);
+        CambiarVidaActual(cantidadVida);
     }
 }
