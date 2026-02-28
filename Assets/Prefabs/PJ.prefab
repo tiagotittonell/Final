@@ -280,12 +280,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anim: {fileID: 2238526510694004914}
-  aanim: {fileID: 0}
   controladorGolpe: {fileID: 2238526510841352315}
   radioGolpe: 1
   "da\xF1oGolpe": 200
-  tiempoEntreAtaques: 0.5
-  tiempoSiguienteAtaque: 0.5
+  ventanaCombo: 0.3
 --- !u!95 &2238526510694004914
 Animator:
   serializedVersion: 4
@@ -910,7 +908,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -498, y: 397}
+  m_AnchoredPosition: {x: -498, y: 241}
   m_SizeDelta: {x: 526.0887, y: 300.8488}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1687134247470681352
@@ -988,7 +986,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 332, y: -143}
+  m_AnchoredPosition: {x: 332, y: -151.00003}
   m_SizeDelta: {x: 24.912, y: -7.38}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &6480530867109590039

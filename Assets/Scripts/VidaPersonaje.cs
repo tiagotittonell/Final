@@ -39,11 +39,13 @@ public class VidaPersonaje : MonoBehaviour
     private IEnumerator Muerte()
     {
         yield return new WaitForSeconds(2f);
-        SceneManager.LoadScene("PantallaDerrota");
+        GestorEscenas.CargarGameOver();
     }
 
     public void TomarDañoBarra(float daño)
     {
+        if (estaMuerto) return;
+
         float vidaAntes = vida;
 
         vida -= daño;
@@ -54,9 +56,9 @@ public class VidaPersonaje : MonoBehaviour
 
         if (vida <= 0)
         {
+            estaMuerto = true;
             movimientoJugador.sePuedeMover = false;
             movimientoJugador.enabled = false;
-            GestorEscenas.CargarGameOver();
             animator.SetTrigger("Muerte");
             StartCoroutine(Muerte());
             return;
