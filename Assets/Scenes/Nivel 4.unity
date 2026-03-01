@@ -500,7 +500,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 545156599}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -48.459736, y: -40.412838, z: 120.7}
+  m_LocalPosition: {x: -48.474915, y: -40.412838, z: 120.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -636,7 +636,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4133625822348180, guid: 4c982269016456b4bad3db44c7da536e, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4133625822348180, guid: 4c982269016456b4bad3db44c7da536e, type: 3}
       propertyPath: m_LocalScale.x
@@ -4136,6 +4136,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemigo3 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 8192957525376447331, guid: fe7d9731ff3dac2498814f4b755b0215, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8192957525376447334, guid: fe7d9731ff3dac2498814f4b755b0215, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -4538,6 +4542,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemigo3 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 8192957525376447331, guid: fe7d9731ff3dac2498814f4b755b0215, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8192957525376447334, guid: fe7d9731ff3dac2498814f4b755b0215, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -4659,12 +4667,16 @@ PrefabInstance:
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2238526510694004916, guid: 3126a0fc22625c94484549c6b70169b2, type: 3}
+      propertyPath: velocidadDash
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2238526510694004916, guid: 3126a0fc22625c94484549c6b70169b2, type: 3}
       propertyPath: velocidadDeMovimiento
       value: 12.5
       objectReference: {fileID: 0}
     - target: {fileID: 2238526510694004918, guid: 3126a0fc22625c94484549c6b70169b2, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2238526510694004918, guid: 3126a0fc22625c94484549c6b70169b2, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4865,9 +4877,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemigo3
       objectReference: {fileID: 0}
+    - target: {fileID: 8192957525376447331, guid: fe7d9731ff3dac2498814f4b755b0215, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8192957525376447334, guid: fe7d9731ff3dac2498814f4b755b0215, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8192957525376447334, guid: fe7d9731ff3dac2498814f4b755b0215, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5459,11 +5475,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7547008690257005609, guid: b9e1043c20ca6a6408feced46a53d3f1, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7547008690257005610, guid: b9e1043c20ca6a6408feced46a53d3f1, type: 3}
       propertyPath: vida
       value: 1500
+      objectReference: {fileID: 0}
+    - target: {fileID: 7547008690257005611, guid: b9e1043c20ca6a6408feced46a53d3f1, type: 3}
+      propertyPath: m_Mass
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 7547008690257005611, guid: b9e1043c20ca6a6408feced46a53d3f1, type: 3}
       propertyPath: m_Constraints
@@ -5471,7 +5491,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7547008690257005615, guid: b9e1043c20ca6a6408feced46a53d3f1, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7547008690257005615, guid: b9e1043c20ca6a6408feced46a53d3f1, type: 3}
       propertyPath: m_LocalScale.x

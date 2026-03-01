@@ -34,10 +34,15 @@ public class MovimientoPersonaje : MonoBehaviour
     private bool enSuelo;
     private bool salto = false;
 
+    // Físicas de salto (estilo Hollow Knight)
+    [SerializeField] private float multiplicadorCaida = 2.5f;
+    [SerializeField] private float multiplicadorSaltoCorto = 2f;
+
     // Dash
     [SerializeField] private float velocidadDash;
     [SerializeField] private float tiempoDash;
     private bool puedeHacerDash = true;
+    private bool estaDashing = false;
     public bool sePuedeMover = true;
     [SerializeField] private TrailRenderer trailRender;
 
@@ -51,6 +56,11 @@ public class MovimientoPersonaje : MonoBehaviour
     [SerializeField] private float fuerzaSaltoParedY;
     [SerializeField] private float tiempoSaltoPared;
     private bool saltandoPared;
+    private bool saltoPared = false;
+
+    // Doble salto
+    [SerializeField] private int maxSaltosAire = 1;
+    private int saltosAireRestantes;
 
     // Subir escaleras
     [SerializeField] private float velocidadEscalar;
@@ -87,8 +97,24 @@ public class MovimientoPersonaje : MonoBehaviour
         }
 
         salto = false;
+        saltoPared = false;
+
+        if (enSuelo)
+            saltosAireRestantes = maxSaltosAire;
 
         Escalar();
+
+        // Gravedad dinámica estilo Hollow Knight
+        // Cae más rápido de lo que sube, y si soltás el botón antes del apex cae aún más rápido
+        if (!escalando && !deslizando && !estaDashing)
+        {
+            if (rb.velocity.y < 0)
+                rb.gravityScale = gravedadInicial * multiplicadorCaida;
+            else if (rb.velocity.y > 0 && !UnityEngine.Input.GetButton("Jump"))
+                rb.gravityScale = gravedadInicial * multiplicadorSaltoCorto;
+            else
+                rb.gravityScale = gravedadInicial;
+        }
 
         if (Mathf.Abs(rb.velocity.x) < deadzoneVelocidadX)
         {
@@ -100,18 +126,24 @@ public class MovimientoPersonaje : MonoBehaviour
     {
         movimientoHorizontal = UnityEngine.Input.GetAxisRaw("Horizontal") * velocidadDeMovimiento;
 
-        if (UnityEngine.Input.GetButtonDown("Jump") && enSuelo)
-        {
-            salto = true;
-        }
+        // Deslizamiento: solo requiere tocar la pared en el aire (sin necesidad de input horizontal)
+        deslizando = !enSuelo && enPared;
 
-        if (!enSuelo && enPared && UnityEngine.Input.GetAxisRaw("Horizontal") != 0)
+        if (UnityEngine.Input.GetButtonDown("Jump"))
         {
-            deslizando = true;
-        }
-        else
-        {
-            deslizando = false;
+            if (enSuelo)
+            {
+                salto = true;
+            }
+            else if (deslizando)
+            {
+                saltoPared = true;
+            }
+            else if (saltosAireRestantes > 0)
+            {
+                salto = true;
+                saltosAireRestantes--;
+            }
         }
 
         if (UnityEngine.Input.GetKeyDown(KeyCode.C) && puedeHacerDash)
@@ -149,11 +181,11 @@ public class MovimientoPersonaje : MonoBehaviour
             Girar();
         }
 
-        if (salto && enSuelo && !deslizando)
+        if (salto)
         {
             Salto();
         }
-        if (salto && enPared && deslizando)
+        if (saltoPared)
         {
             SaltoPared();
         }
@@ -168,7 +200,12 @@ public class MovimientoPersonaje : MonoBehaviour
     private void SaltoPared()
     {
         enPared = false;
-        rb.velocity = new Vector2(fuerzaSaltoParedX * -UnityEngine.Input.GetAxisRaw("Horizontal"), fuerzaSaltoParedY);
+        deslizando = false;
+        // Empuja en dirección contraria a donde mira (alejándose de la pared)
+        float dirX = mirandoDerecha ? -1f : 1f;
+        rb.velocity = new Vector2(fuerzaSaltoParedX * dirX, fuerzaSaltoParedY);
+        // El wall jump refresca el doble salto (igual que Hollow Knight)
+        saltosAireRestantes = maxSaltosAire;
         StartCoroutine(CambioSaltoPared());
     }
 
@@ -189,6 +226,7 @@ public class MovimientoPersonaje : MonoBehaviour
 
     private IEnumerator Dash()
     {
+        estaDashing = true;
         sePuedeMover = false;
         puedeHacerDash = false;
         rb.gravityScale = 0;
@@ -198,6 +236,7 @@ public class MovimientoPersonaje : MonoBehaviour
 
         yield return new WaitForSeconds(tiempoDash);
 
+        estaDashing = false;
         sePuedeMover = true;
         puedeHacerDash = true;
         rb.gravityScale = gravedadInicial;

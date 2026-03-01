@@ -322,22 +322,25 @@ MonoBehaviour:
   velocidadDeMovimiento: 12.5
   suavizadoMovimiento: 0.192
   deadzoneVelocidadX: 0.05
-  fuerzaSalto: 11
+  fuerzaSalto: 30
   queEsSuelo:
     serializedVersion: 2
     m_Bits: 8
   controladorSuelo: {fileID: 2238526509726506942}
   dimensionCaja: {x: 1.09, y: 0.15}
+  multiplicadorCaida: 2.5
+  multiplicadorSaltoCorto: 2
   velocidadDash: 6
   tiempoDash: 0.4
   sePuedeMover: 1
   trailRender: {fileID: 2238526510645602610}
   controladorPared: {fileID: 2238526511250258774}
-  dimensionCajaPared: {x: 0.37, y: 2.68}
+  dimensionCajaPared: {x: 0.33, y: 1.5}
   velocidadDeslizar: 1
   fuerzaSaltoParedX: 6
   fuerzaSaltoParedY: 12
   tiempoSaltoPared: 0.2
+  maxSaltosAire: 1
   velocidadEscalar: 5
 --- !u!70 &2238526510694004912
 CapsuleCollider2D:
@@ -474,7 +477,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2238526511250258775}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.065, y: -0.0464, z: 0}
+  m_LocalPosition: {x: 0.0626, y: -0.0464, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 8}
   m_ConstrainProportionsScale: 0
   m_Children: []
