@@ -11,22 +11,18 @@ public class MovimientoPersonaje : MonoBehaviour
     private Animator anim;
     private BoxCollider2D boxCollider;
 
-    // Efecto daño
     [SerializeField] private Vector2 velocidadRebote;
     [SerializeField] private bool damage_;
     [SerializeField] private int empuje;
 
-    // Movimiento
     private float movimientoHorizontal = 0f;
     [SerializeField] private float velocidadDeMovimiento;
     [Range(0, 0.3f)][SerializeField] private float suavizadoMovimiento;
     private Vector3 velocidad = Vector3.zero;
     private bool mirandoDerecha = true;
 
-    // Deadzone para evitar micro-valores tipo 1e-39
     [SerializeField] private float deadzoneVelocidadX = 0.05f;
 
-    // Salto
     public float fuerzaSalto = 10f;
     [SerializeField] private LayerMask queEsSuelo;
     [SerializeField] private Transform controladorSuelo;
@@ -34,11 +30,9 @@ public class MovimientoPersonaje : MonoBehaviour
     private bool enSuelo;
     private bool salto = false;
 
-    // Físicas de salto (estilo Hollow Knight)
     [SerializeField] private float multiplicadorCaida = 2.5f;
     [SerializeField] private float multiplicadorSaltoCorto = 2f;
 
-    // Dash
     [SerializeField] private float velocidadDash;
     [SerializeField] private float tiempoDash;
     private bool puedeHacerDash = true;
@@ -46,7 +40,6 @@ public class MovimientoPersonaje : MonoBehaviour
     public bool sePuedeMover = true;
     [SerializeField] private TrailRenderer trailRender;
 
-    // Deslizamiento pared
     [SerializeField] private Transform controladorPared;
     [SerializeField] private Vector2 dimensionCajaPared = new Vector2(0.5f, 1f);
     private bool enPared;
@@ -58,11 +51,10 @@ public class MovimientoPersonaje : MonoBehaviour
     private bool saltandoPared;
     private bool saltoPared = false;
 
-    // Doble salto
     [SerializeField] private int maxSaltosAire = 1;
     private int saltosAireRestantes;
+    private bool esDobleSalto = false;
 
-    // Subir escaleras
     [SerializeField] private float velocidadEscalar;
     private float gravedadInicial;
     private bool escalando;
@@ -104,8 +96,6 @@ public class MovimientoPersonaje : MonoBehaviour
 
         Escalar();
 
-        // Gravedad dinámica estilo Hollow Knight
-        // Cae más rápido de lo que sube, y si soltás el botón antes del apex cae aún más rápido
         if (!escalando && !deslizando && !estaDashing)
         {
             if (rb.velocity.y < 0)
@@ -126,13 +116,17 @@ public class MovimientoPersonaje : MonoBehaviour
     {
         movimientoHorizontal = UnityEngine.Input.GetAxisRaw("Horizontal") * velocidadDeMovimiento;
 
-        // Deslizamiento: solo requiere tocar la pared en el aire (sin necesidad de input horizontal)
         deslizando = !enSuelo && enPared;
 
         if (UnityEngine.Input.GetButtonDown("Jump"))
         {
             if (enSuelo)
             {
+                salto = true;
+            }
+            else if (escalando)
+            {
+                escalando = false;
                 salto = true;
             }
             else if (deslizando)
@@ -143,6 +137,8 @@ public class MovimientoPersonaje : MonoBehaviour
             {
                 salto = true;
                 saltosAireRestantes--;
+                esDobleSalto = true;
+                anim.SetTrigger("DobleSalto");
             }
         }
 
@@ -162,6 +158,10 @@ public class MovimientoPersonaje : MonoBehaviour
         anim.SetBool("enSuelo", enSuelo);
         anim.SetBool("Deslizando", deslizando);
         anim.SetBool("Escalar", escalando);
+        anim.SetBool("EsDobleSalto", esDobleSalto);
+
+        if (enSuelo)
+            esDobleSalto = false;
     }
 
     private void Mover(float mover)
@@ -201,10 +201,8 @@ public class MovimientoPersonaje : MonoBehaviour
     {
         enPared = false;
         deslizando = false;
-        // Empuja en dirección contraria a donde mira (alejándose de la pared)
         float dirX = mirandoDerecha ? -1f : 1f;
         rb.velocity = new Vector2(fuerzaSaltoParedX * dirX, fuerzaSaltoParedY);
-        // El wall jump refresca el doble salto (igual que Hollow Knight)
         saltosAireRestantes = maxSaltosAire;
         StartCoroutine(CambioSaltoPared());
     }
