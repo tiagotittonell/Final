@@ -123,11 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!4 &28968133 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2238526510694004918, guid: 3126a0fc22625c94484549c6b70169b2, type: 3}
-  m_PrefabInstance: {fileID: 1585915008}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &81454906
 GameObject:
   m_ObjectHideFlags: 0
@@ -3821,7 +3816,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3712394655599513477, guid: 0b33738f58425be4ab0d7da90f4f149e, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3712394655599513477, guid: 0b33738f58425be4ab0d7da90f4f149e, type: 3}
       propertyPath: m_LocalScale.x
@@ -3882,7 +3877,7 @@ PrefabInstance:
     - target: {fileID: 3712394655599513479, guid: 0b33738f58425be4ab0d7da90f4f149e, type: 3}
       propertyPath: jugador
       value: 
-      objectReference: {fileID: 28968133}
+      objectReference: {fileID: 0}
     - target: {fileID: 3712394655599513479, guid: 0b33738f58425be4ab0d7da90f4f149e, type: 3}
       propertyPath: barraVida
       value: 
@@ -4038,7 +4033,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 895975395}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -19.19026, y: -19.57621, z: 120.7}
+  m_LocalPosition: {x: -19.877699, y: -19.57523, z: 120.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4600,7 +4595,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1001 &1585915008
+--- !u!1001 &1430584386
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -4615,33 +4610,17 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2238526509726506942, guid: 3126a0fc22625c94484549c6b70169b2, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.1937
-      objectReference: {fileID: 0}
-    - target: {fileID: 2238526510694004912, guid: 3126a0fc22625c94484549c6b70169b2, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2238526510694004916, guid: 3126a0fc22625c94484549c6b70169b2, type: 3}
-      propertyPath: fuerzaSalto
-      value: 11.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2238526510694004916, guid: 3126a0fc22625c94484549c6b70169b2, type: 3}
-      propertyPath: velocidadDeMovimiento
-      value: 12.5
-      objectReference: {fileID: 0}
     - target: {fileID: 2238526510694004918, guid: 3126a0fc22625c94484549c6b70169b2, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2238526510694004918, guid: 3126a0fc22625c94484549c6b70169b2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -25.6
+      value: -26.289303
       objectReference: {fileID: 0}
     - target: {fileID: 2238526510694004918, guid: 3126a0fc22625c94484549c6b70169b2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -44.7
+      value: -45.10127
       objectReference: {fileID: 0}
     - target: {fileID: 2238526510694004918, guid: 3126a0fc22625c94484549c6b70169b2, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4679,88 +4658,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: PJ
       objectReference: {fileID: 0}
-    - target: {fileID: 2238526510694004941, guid: 3126a0fc22625c94484549c6b70169b2, type: 3}
-      propertyPath: vida
-      value: 1000
-      objectReference: {fileID: 0}
-    - target: {fileID: 2238526510694004941, guid: 3126a0fc22625c94484549c6b70169b2, type: 3}
-      propertyPath: vidaMaxima
-      value: 1000
-      objectReference: {fileID: 0}
-    - target: {fileID: 2238526510694004941, guid: 3126a0fc22625c94484549c6b70169b2, type: 3}
-      propertyPath: fuerzaEmpuje
-      value: 1000
-      objectReference: {fileID: 0}
-    - target: {fileID: 2238526510694004941, guid: 3126a0fc22625c94484549c6b70169b2, type: 3}
-      propertyPath: tiempoPerdidaControl
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2238526510694004943, guid: 3126a0fc22625c94484549c6b70169b2, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3770176059613545963, guid: 3126a0fc22625c94484549c6b70169b2, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 12.18
-      objectReference: {fileID: 0}
-    - target: {fileID: 3770176059613545963, guid: 3126a0fc22625c94484549c6b70169b2, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: -5.533
-      objectReference: {fileID: 0}
-    - target: {fileID: 3770176059613545963, guid: 3126a0fc22625c94484549c6b70169b2, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1.83
-      objectReference: {fileID: 0}
-    - target: {fileID: 3770176059613545963, guid: 3126a0fc22625c94484549c6b70169b2, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3770176059613545963, guid: 3126a0fc22625c94484549c6b70169b2, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 346
-      objectReference: {fileID: 0}
-    - target: {fileID: 3770176059613545963, guid: 3126a0fc22625c94484549c6b70169b2, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -148
-      objectReference: {fileID: 0}
-    - target: {fileID: 4266101463427528829, guid: 3126a0fc22625c94484549c6b70169b2, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4637676561806697425, guid: 3126a0fc22625c94484549c6b70169b2, type: 3}
-      propertyPath: m_UiScaleMode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4637676561806697425, guid: 3126a0fc22625c94484549c6b70169b2, type: 3}
-      propertyPath: m_ReferenceResolution.x
-      value: 1920
-      objectReference: {fileID: 0}
-    - target: {fileID: 4637676561806697425, guid: 3126a0fc22625c94484549c6b70169b2, type: 3}
-      propertyPath: m_ReferenceResolution.y
-      value: 1080
-      objectReference: {fileID: 0}
-    - target: {fileID: 5465446037862246949, guid: 3126a0fc22625c94484549c6b70169b2, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1.83
-      objectReference: {fileID: 0}
-    - target: {fileID: 5465446037862246949, guid: 3126a0fc22625c94484549c6b70169b2, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5465446037862246949, guid: 3126a0fc22625c94484549c6b70169b2, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -488
-      objectReference: {fileID: 0}
-    - target: {fileID: 5465446037862246949, guid: 3126a0fc22625c94484549c6b70169b2, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 389
-      objectReference: {fileID: 0}
-    - target: {fileID: 8980186592358874849, guid: 3126a0fc22625c94484549c6b70169b2, type: 3}
-      propertyPath: m_Name
-      value: BarraVidaPersonaje
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3126a0fc22625c94484549c6b70169b2, type: 3}
+--- !u!4 &1430584387 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2238526510694004918, guid: 3126a0fc22625c94484549c6b70169b2, type: 3}
+  m_PrefabInstance: {fileID: 1430584386}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1613702237
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4861,7 +4765,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1699823546}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -19.159304, y: -12.722893, z: 120.7}
+  m_LocalPosition: {x: -19.848606, y: -13.124161, z: 120.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4903,7 +4807,7 @@ MonoBehaviour:
   m_Priority: 122
   m_StandbyUpdate: 2
   m_LookAt: {fileID: 0}
-  m_Follow: {fileID: 28968133}
+  m_Follow: {fileID: 1430584387}
   m_Lens:
     FieldOfView: 60
     OrthographicSize: 13.23

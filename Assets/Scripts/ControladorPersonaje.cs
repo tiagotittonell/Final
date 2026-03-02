@@ -228,6 +228,14 @@ public class ControladorPersonaje : MonoBehaviour
                     bell.Hit();
                 }
             }
+            else if (colisionador.CompareTag("Breakable"))
+            {
+                DummyBreakable dummy = colisionador.GetComponent<DummyBreakable>();
+                if (dummy != null)
+                {
+                    dummy.ReceiveHit();
+                }
+            }
         }
     }
 

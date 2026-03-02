@@ -10,6 +10,7 @@ TagManager:
   - Boss
   - Bell
   - Telarana
+  - Breakable
   layers:
   - Default
   - TransparentFX
