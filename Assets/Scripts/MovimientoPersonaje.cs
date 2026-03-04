@@ -56,9 +56,13 @@ public class MovimientoPersonaje : MonoBehaviour
     private bool esDobleSalto = false;
 
     [SerializeField] private float velocidadEscalar;
+    [SerializeField] private float velocidadAnimacionEscalar = 1f;
+    private float tiempoNormalizadoEscalar = 0f;
+    private int hashEstadoEscalar = -1;
+    private bool escalandoAnterior = false;
     private float gravedadInicial;
     private bool escalando;
-
+    
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -154,11 +158,46 @@ public class MovimientoPersonaje : MonoBehaviour
         if (vx < deadzoneVelocidadX) vx = 0f;
 
         anim.SetFloat("VelocidadX", vx);
-        anim.SetFloat("VelocidadY", rb.velocity.y);
+        anim.SetFloat("VelocidadY", escalando ? 0f : rb.velocity.y);
         anim.SetBool("enSuelo", enSuelo);
         anim.SetBool("Deslizando", deslizando);
         anim.SetBool("Escalar", escalando);
         anim.SetBool("EsDobleSalto", esDobleSalto);
+
+        if (escalando)
+        {
+            // Auto-detect the Escalar state hash on second frame (first frame Animator hasn't processed SetBool yet)
+            if (escalandoAnterior && hashEstadoEscalar == -1)
+            {
+                if (anim.IsInTransition(0))
+                {
+                    AnimatorStateInfo nextInfo = anim.GetNextAnimatorStateInfo(0);
+                    hashEstadoEscalar = nextInfo.shortNameHash;
+                    tiempoNormalizadoEscalar = nextInfo.normalizedTime % 1f;
+                }
+                else
+                {
+                    AnimatorStateInfo currentInfo = anim.GetCurrentAnimatorStateInfo(0);
+                    hashEstadoEscalar = currentInfo.shortNameHash;
+                    tiempoNormalizadoEscalar = currentInfo.normalizedTime % 1f;
+                }
+            }
+
+            if (hashEstadoEscalar != -1)
+            {
+                float inputVertical = UnityEngine.Input.GetAxisRaw("Vertical");
+                tiempoNormalizadoEscalar = Mathf.Repeat(tiempoNormalizadoEscalar + inputVertical * velocidadAnimacionEscalar * Time.deltaTime, 1f);
+                anim.Play(hashEstadoEscalar, 0, tiempoNormalizadoEscalar);
+            }
+        }
+        else
+        {
+            anim.speed = 1f;
+            tiempoNormalizadoEscalar = 0f;
+            hashEstadoEscalar = -1;
+        }
+
+        escalandoAnterior = escalando;
 
         if (enSuelo)
             esDobleSalto = false;
@@ -240,26 +279,20 @@ public class MovimientoPersonaje : MonoBehaviour
         rb.gravityScale = gravedadInicial;
         trailRender.emitting = false;
     }
+ 
 
-    private void Escalar()
-    {
-        if ((UnityEngine.Input.GetAxisRaw("Vertical") != 0 || escalando) && boxCollider.IsTouchingLayers(LayerMask.GetMask("ESCALERAS")))
-        {
-            Vector2 velocidadSubida = new Vector2(rb.velocity.x, UnityEngine.Input.GetAxisRaw("Vertical") * velocidadEscalar);
-            rb.velocity = velocidadSubida;
-            rb.gravityScale = 0;
-            escalando = true;
-        }
-        else
-        {
-            rb.gravityScale = gravedadInicial;
-            escalando = false;
-        }
-
-        if (enSuelo)
-        {
-            escalando = false;
-        }
+   private void Escalar() 
+    { 
+        if ((UnityEngine.Input.GetAxisRaw("Vertical") != 0 || escalando) && boxCollider.IsTouchingLayers(LayerMask.GetMask("ESCALERAS"))) 
+        { 
+            Vector2 velocidadSubida = new Vector2(rb.velocity.x, UnityEngine.Input.GetAxisRaw("Vertical") * velocidadEscalar); 
+            rb.velocity = velocidadSubida; 
+            rb.gravityScale = 0; escalando = true; 
+        } 
+        else 
+        { 
+            rb.gravityScale = gravedadInicial; escalando = false; } if (enSuelo) { escalando = false; 
+        } 
     }
 
     private void OnDrawGizmos()

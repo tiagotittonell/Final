@@ -204,6 +204,8 @@ Transform:
   m_LocalScale: {x: 3.3099582, y: 2.8464382, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 784482114}
+  - {fileID: 1222374539}
   - {fileID: 2044164830}
   - {fileID: 468030859}
   - {fileID: 1136836907}
@@ -545,7 +547,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 120004495}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!68 &468030860
 EdgeCollider2D:
@@ -644,6 +646,77 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3126a0fc22625c94484549c6b70169b2, type: 3}
+--- !u!1 &784482113
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 784482114}
+  - component: {fileID: 784482116}
+  - component: {fileID: 784482115}
+  m_Layer: 0
+  m_Name: NextLevelTrigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &784482114
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 784482113}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 5.46, y: 0.076349206, z: -0.033542912}
+  m_LocalScale: {x: 0.3021186, y: 0.35131624, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 120004495}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &784482115
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 784482113}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d44b78c47a1af047b9a39fa44e49a4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!61 &784482116
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 784482113}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.4570253}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 11.707449}
+  m_EdgeRadius: 0
 --- !u!1 &839216390
 GameObject:
   m_ObjectHideFlags: 0
@@ -674,7 +747,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 120004495}
-  m_RootOrder: 3
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &839216392
 SpriteRenderer:
@@ -740,7 +813,7 @@ GameObject:
   - component: {fileID: 933931408}
   - component: {fileID: 933931407}
   - component: {fileID: 933931406}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: "Mu\xF1ecoDePractica"
   m_TagString: Breakable
   m_Icon: {fileID: 0}
@@ -759,9 +832,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b79826413085a734788e10bae9f42081, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  vida: 1200
   shakeDuration: 0.1
   shakeMagnitude: 0.05
-  flashDuration: 1
+  flashDuration: 0.05
 --- !u!61 &933931407
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -848,7 +922,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 933931405}
   m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
-  m_LocalPosition: {x: -49.78, y: -19.87, z: 0}
+  m_LocalPosition: {x: -49.78, y: -19.87, z: -0.82}
   m_LocalScale: {x: 1.5, y: 1.4, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1078,7 +1152,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 120004495}
-  m_RootOrder: 2
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!68 &1136836908
 EdgeCollider2D:
@@ -1254,7 +1328,7 @@ GameObject:
   - component: {fileID: 1222374539}
   - component: {fileID: 1222374538}
   m_Layer: 0
-  m_Name: ChatGPT Image 1 mar 2026, 11_24_37 p.m.
+  m_Name: JumpTutorialSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1319,13 +1393,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1222374537}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -80.52, y: -17.23, z: 0}
-  m_LocalScale: {x: 0.85, y: 0.85, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -6.0700755, y: 0.5988541, z: -1.1}
+  m_LocalScale: {x: 0.25680083, y: 0.29861882, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_Father: {fileID: 120004495}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1398610880
 GameObject:
@@ -1607,7 +1681,7 @@ Transform:
   m_Children:
   - {fileID: 401986601}
   m_Father: {fileID: 120004495}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2044164831
 SpriteRenderer:

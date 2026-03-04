@@ -6,6 +6,9 @@ public class DummyBreakable : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private Vector3 originalPosition;
 
+    [Header("Vida")]
+    public float vida = 1200f;
+
     [Header("Shake")]
     public float shakeDuration = 0.1f;
     public float shakeMagnitude = 0.05f;
@@ -13,24 +16,35 @@ public class DummyBreakable : MonoBehaviour
     [Header("Flash")]
     public float flashDuration = 0.08f;
 
+    private bool destruido = false;
+
     private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         originalPosition = transform.localPosition;
     }
 
-    public void ReceiveHit()
+    public void ReceiveHit(float daño = 200f)
     {
+        if (destruido) return;
+
+        vida -= daño;
+
         StopAllCoroutines();
         StartCoroutine(HitEffect());
+
+        if (vida <= 0)
+        {
+            destruido = true;
+            StartCoroutine(DestroyDummy());
+        }
     }
 
     private IEnumerator HitEffect()
     {
-        // Flash blanco
+        // Flash rojo
         spriteRenderer.color = Color.red;
 
-        // Shake
         float elapsed = 0f;
 
         while (elapsed < shakeDuration)
@@ -44,12 +58,20 @@ public class DummyBreakable : MonoBehaviour
             yield return null;
         }
 
-        // Reset
         transform.localPosition = originalPosition;
-        spriteRenderer.color = Color.white;
 
         yield return new WaitForSeconds(flashDuration);
 
-        spriteRenderer.color = Color.white; // puedes cambiar a otro color si quieres
+        spriteRenderer.color = Color.white;
+    }
+
+    private IEnumerator DestroyDummy()
+    {
+        yield return new WaitForSeconds(0.05f);
+
+        // aca voy a agregar:
+        // partículas, sonido, animación, loot, etc.
+
+        Destroy(gameObject);
     }
 }
