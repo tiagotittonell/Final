@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Enemigo : MonoBehaviour
+public class Enemigo : EnemigoBase
 {
     [SerializeField] private float vida;
     [SerializeField] private BarraDeVidaBoss barraVida;
@@ -49,8 +49,10 @@ public class Enemigo : MonoBehaviour
     }
         // Update is called once per frame
         
-    public void TomarDañoEnemigo(float daño)
+    public override void TomarDaño(float daño)
     {
+        base.TomarDaño(daño);
+
         vida -= daño;
 
         barraVida.CambiarVidaActual(vida);

@@ -23,6 +23,12 @@ public class NoteReader : MonoBehaviour
     [Tooltip("Texto ayuda para recordarle al jugador presionar la F para interactuar")]
     [SerializeField] private TextMeshProUGUI helpText;
 
+    [Header("Canvas")]
+    [Tooltip("Canvas de la nota (para ponerlo por encima de la UI de vida).")]
+    [SerializeField] private Canvas notaCanvas;
+    [SerializeField] private int sortingOrderActivo = 100;
+
+    private int _sortingOrderOriginal;
     private bool _playerInside;
     private bool _isOpen;
 
@@ -31,6 +37,9 @@ public class NoteReader : MonoBehaviour
 
     private void Awake()
     {
+        if (notaCanvas != null)
+            _sortingOrderOriginal = notaCanvas.sortingOrder;
+
         if (panel != null) panel.SetActive(false);
         if (helpText != null) helpText.gameObject.SetActive(false);
 
@@ -60,6 +69,7 @@ public class NoteReader : MonoBehaviour
         _isOpen = true;
         _step = 1;
 
+        if (notaCanvas != null) notaCanvas.sortingOrder = sortingOrderActivo;
         if (panel != null) panel.SetActive(true);
         if (helpText != null) helpText.gameObject.SetActive(false);
 
@@ -88,6 +98,7 @@ public class NoteReader : MonoBehaviour
         _isOpen = false;
         _step = 0;
 
+        if (notaCanvas != null) notaCanvas.sortingOrder = _sortingOrderOriginal;
         Time.timeScale = 1f;
 
         if (noteText1 != null) noteText1.gameObject.SetActive(false);

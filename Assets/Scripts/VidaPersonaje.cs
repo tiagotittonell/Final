@@ -54,6 +54,18 @@ public class VidaPersonaje : MonoBehaviour
 
         barraVida.CambiarVidaActual(vida);
 
+        Vector2 dirShake = Vector2.down;
+        Collider2D[] cercanos = Physics2D.OverlapCircleAll(transform.position, 6f);
+        foreach (Collider2D c in cercanos)
+        {
+            if (c.CompareTag("Enemigo") || c.CompareTag("Boss"))
+            {
+                dirShake = ((Vector2)(c.transform.position - transform.position)).normalized;
+                break;
+            }
+        }
+        ControladorCamara.Instance?.ShakeDaño(dirShake);
+
         if (vida <= 0)
         {
             estaMuerto = true;

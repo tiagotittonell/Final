@@ -124,7 +124,7 @@ GameObject:
   - component: {fileID: 3712394655599513499}
   m_Layer: 0
   m_Name: EnemigoBoss 1
-  m_TagString: Enemigo
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -217,7 +217,7 @@ MonoBehaviour:
   jugador: {fileID: 0}
   controladorAtaque: {fileID: 3712394655504971208}
   radioAtaque: 2
-  "da\xF1oAtaque": 20
+  "da\xF1oAtaque": 150
 --- !u!95 &3712394655599513472
 Animator:
   serializedVersion: 4

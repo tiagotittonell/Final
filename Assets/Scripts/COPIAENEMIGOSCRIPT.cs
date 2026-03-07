@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class COPIAENEMIGOSCRIPT : MonoBehaviour, IDamageable
+public class COPIAENEMIGOSCRIPT : EnemigoBase
 {
 
 
@@ -139,9 +139,11 @@ public class COPIAENEMIGOSCRIPT : MonoBehaviour, IDamageable
         Comportamientos();
     }
 
-    public void TomarDaño(float daño)
+    public override void TomarDaño(float daño)
     {
-        if (estaMuerto) return; 
+        if (estaMuerto) return;
+
+        base.TomarDaño(daño);
 
         vida -= daño;
 

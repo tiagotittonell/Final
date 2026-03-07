@@ -11,7 +11,7 @@ public class ControladorPantalla : MonoBehaviour
         }
         else
         {
-            SceneManager.LoadScene("Nivel 1");
+            SceneManager.LoadScene("Tutorial");
         }
     }
 

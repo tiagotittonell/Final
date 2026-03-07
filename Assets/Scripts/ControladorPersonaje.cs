@@ -217,7 +217,7 @@ public class ControladorPersonaje : MonoBehaviour
                 Enemigo boss = colisionador.GetComponent<Enemigo>();
                 if (boss != null)
                 {
-                    boss.TomarDañoEnemigo(dañoGolpe);
+                    boss.TomarDaño(dañoGolpe);
                 }
             }
             else if (colisionador.CompareTag("Bell"))
