@@ -798,7 +798,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 545156599}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -16.29699, y: -73.07861, z: 120.7}
+  m_LocalPosition: {x: -13.639303, y: -73.21489, z: 120.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5210,7 +5210,7 @@ GameObject:
   - component: {fileID: 1546519410}
   - component: {fileID: 1546519412}
   m_Layer: 0
-  m_Name: CamLvl5 (1)
+  m_Name: CamLevels
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6251,6 +6251,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 578896367864762154, guid: 3126a0fc22625c94484549c6b70169b2, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -5.9293027
+      objectReference: {fileID: 0}
+    - target: {fileID: 578896367864762154, guid: 3126a0fc22625c94484549c6b70169b2, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 15.075108
+      objectReference: {fileID: 0}
     - target: {fileID: 936221592962575701, guid: 3126a0fc22625c94484549c6b70169b2, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0

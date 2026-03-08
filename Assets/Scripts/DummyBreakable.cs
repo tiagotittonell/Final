@@ -28,6 +28,12 @@ public class DummyBreakable : MonoBehaviour
     {
         if (destruido) return;
 
+        Vector2 dir = Vector2.right;
+        GameObject pj = GameObject.FindGameObjectWithTag("PJ");
+        if (pj != null)
+            dir = ((Vector2)(transform.position - pj.transform.position)).normalized;
+        ControladorCamara.Instance?.ShakeGolpe(dir);
+
         vida -= daño;
 
         StopAllCoroutines();

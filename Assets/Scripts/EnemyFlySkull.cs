@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class EnemyFlySkull : MonoBehaviour, IDamageable
+public class EnemyFlySkull : EnemigoBase
 {
     private enum State { IdleFly, Sleeping, Rising }
 
@@ -230,10 +230,12 @@ public class EnemyFlySkull : MonoBehaviour, IDamageable
         _shotsBeforeSleep = Random.Range(3, 6);
     }
 
-    public void TomarDaño(float daño)
+    public override void TomarDaño(float daño)
     {
         if (estaMuerto) return;
         if (!estaDormido) return;
+
+        base.TomarDaño(daño);
 
         vida -= daño;
 

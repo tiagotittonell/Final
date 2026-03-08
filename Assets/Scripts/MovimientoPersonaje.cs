@@ -9,7 +9,7 @@ public class MovimientoPersonaje : MonoBehaviour
 {
     private Rigidbody2D rb;
     private Animator anim;
-    private BoxCollider2D boxCollider;
+    private CapsuleCollider2D boxCollider;
 
     [SerializeField] private Vector2 velocidadRebote;
     [SerializeField] private bool damage_;
@@ -40,16 +40,16 @@ public class MovimientoPersonaje : MonoBehaviour
     public bool sePuedeMover = true;
     [SerializeField] private TrailRenderer trailRender;
 
-    [SerializeField] private Transform controladorPared;
-    [SerializeField] private Vector2 dimensionCajaPared = new Vector2(0.5f, 1f);
-    private bool enPared;
-    private bool deslizando;
-    [SerializeField] private float velocidadDeslizar;
-    [SerializeField] private float fuerzaSaltoParedX;
-    [SerializeField] private float fuerzaSaltoParedY;
-    [SerializeField] private float tiempoSaltoPared;
-    private bool saltandoPared;
-    private bool saltoPared = false;
+    //[SerializeField] private Transform controladorPared;
+    //[SerializeField] private Vector2 dimensionCajaPared = new Vector2(0.5f, 1f);
+    //private bool enPared;
+    //private bool deslizando;
+    //[SerializeField] private float velocidadDeslizar;
+    //[SerializeField] private float fuerzaSaltoParedX;
+    //[SerializeField] private float fuerzaSaltoParedY;
+    //[SerializeField] private float tiempoSaltoPared;
+    //private bool saltandoPared;
+    //private bool saltoPared = false;
 
     [SerializeField] private int maxSaltosAire = 1;
     private int saltosAireRestantes;
@@ -62,12 +62,18 @@ public class MovimientoPersonaje : MonoBehaviour
     private bool escalandoAnterior = false;
     private float gravedadInicial;
     private bool escalando;
+    //private float tiempoEnAire = 0f;
+    //[SerializeField] private float tiempoGraciaParede = 0.1f;
+    private bool enHangTime = false;
+    private Coroutine coroutinaHangTime;
+
+    public bool EstaEnSuelo => enSuelo;
     
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
-        boxCollider = GetComponent<BoxCollider2D>();
+        boxCollider = GetComponent<CapsuleCollider2D>();
         gravedadInicial = rb.gravityScale;
     }
 
@@ -80,27 +86,29 @@ public class MovimientoPersonaje : MonoBehaviour
     private void FixedUpdate()
     {
         enSuelo = Physics2D.OverlapBox(controladorSuelo.position, dimensionCaja, 0f, queEsSuelo);
-        enPared = Physics2D.OverlapBox(controladorPared.position, dimensionCajaPared, 0f, queEsSuelo);
+        //enPared = Physics2D.OverlapBox(controladorPared.position, dimensionCajaPared, 0f, queEsSuelo);
+
+        //tiempoEnAire = enSuelo ? 0f : tiempoEnAire + Time.fixedDeltaTime;
 
         if (sePuedeMover)
         {
             Mover(movimientoHorizontal);
         }
 
-        if (deslizando)
-        {
-            rb.velocity = new Vector2(rb.velocity.x, -velocidadDeslizar);
-        }
+        //if (deslizando)
+        //{
+        //    rb.velocity = new Vector2(rb.velocity.x, -velocidadDeslizar);
+        //}
 
         salto = false;
-        saltoPared = false;
+        //saltoPared = false;
 
         if (enSuelo)
             saltosAireRestantes = maxSaltosAire;
 
         Escalar();
 
-        if (!escalando && !deslizando && !estaDashing)
+        if (!escalando && /*!deslizando &&*/ !estaDashing && !enHangTime)
         {
             if (rb.velocity.y < 0)
                 rb.gravityScale = gravedadInicial * multiplicadorCaida;
@@ -120,7 +128,7 @@ public class MovimientoPersonaje : MonoBehaviour
     {
         movimientoHorizontal = UnityEngine.Input.GetAxisRaw("Horizontal") * velocidadDeMovimiento;
 
-        deslizando = !enSuelo && enPared;
+        //deslizando = !enSuelo && enPared && tiempoEnAire > tiempoGraciaParede;
 
         if (UnityEngine.Input.GetButtonDown("Jump"))
         {
@@ -133,10 +141,10 @@ public class MovimientoPersonaje : MonoBehaviour
                 escalando = false;
                 salto = true;
             }
-            else if (deslizando)
-            {
-                saltoPared = true;
-            }
+            //else if (deslizando)
+            //{
+            //    saltoPared = true;
+            //}
             else if (saltosAireRestantes > 0)
             {
                 salto = true;
@@ -160,13 +168,12 @@ public class MovimientoPersonaje : MonoBehaviour
         anim.SetFloat("VelocidadX", vx);
         anim.SetFloat("VelocidadY", escalando ? 0f : rb.velocity.y);
         anim.SetBool("enSuelo", enSuelo);
-        anim.SetBool("Deslizando", deslizando);
+        //anim.SetBool("Deslizando", deslizando);
         anim.SetBool("Escalar", escalando);
         anim.SetBool("EsDobleSalto", esDobleSalto);
 
         if (escalando)
         {
-            // Auto-detect the Escalar state hash on second frame (first frame Animator hasn't processed SetBool yet)
             if (escalandoAnterior && hashEstadoEscalar == -1)
             {
                 if (anim.IsInTransition(0))
@@ -205,11 +212,14 @@ public class MovimientoPersonaje : MonoBehaviour
 
     private void Mover(float mover)
     {
-        if (!saltandoPared)
+        //if (!saltandoPared)
+        //{
+        if (!enHangTime)
         {
             Vector3 velocidadObjetivo = new Vector2(mover, rb.velocity.y);
             rb.velocity = Vector3.SmoothDamp(rb.velocity, velocidadObjetivo, ref velocidad, suavizadoMovimiento);
         }
+        //}
 
         if (mover > 0 && !mirandoDerecha)
         {
@@ -224,10 +234,10 @@ public class MovimientoPersonaje : MonoBehaviour
         {
             Salto();
         }
-        if (saltoPared)
-        {
-            SaltoPared();
-        }
+        //if (saltoPared)
+        //{
+        //    SaltoPared();
+        //}
     }
 
     private void Salto()
@@ -236,22 +246,22 @@ public class MovimientoPersonaje : MonoBehaviour
         enSuelo = false;
     }
 
-    private void SaltoPared()
-    {
-        enPared = false;
-        deslizando = false;
-        float dirX = mirandoDerecha ? -1f : 1f;
-        rb.velocity = new Vector2(fuerzaSaltoParedX * dirX, fuerzaSaltoParedY);
-        saltosAireRestantes = maxSaltosAire;
-        StartCoroutine(CambioSaltoPared());
-    }
+    //private void SaltoPared()
+    //{
+    //    enPared = false;
+    //    deslizando = false;
+    //    float dirX = mirandoDerecha ? -1f : 1f;
+    //    rb.velocity = new Vector2(fuerzaSaltoParedX * dirX, fuerzaSaltoParedY);
+    //    saltosAireRestantes = maxSaltosAire;
+    //    StartCoroutine(CambioSaltoPared());
+    //}
 
-    private IEnumerator CambioSaltoPared()
-    {
-        saltandoPared = true;
-        yield return new WaitForSeconds(tiempoSaltoPared);
-        saltandoPared = false;
-    }
+    //private IEnumerator CambioSaltoPared()
+    //{
+    //    saltandoPared = true;
+    //    yield return new WaitForSeconds(tiempoSaltoPared);
+    //    saltandoPared = false;
+    //}
 
     private void Girar()
     {
@@ -295,11 +305,28 @@ public class MovimientoPersonaje : MonoBehaviour
         } 
     }
 
+    public void AplicarImpulsoAereo(float duracion, float escalaGravedad, float impulsoLateral)
+    {
+        if (coroutinaHangTime != null)
+            StopCoroutine(coroutinaHangTime);
+        coroutinaHangTime = StartCoroutine(CorrutinaImpulsoAereo(duracion, escalaGravedad, impulsoLateral));
+    }
+
+    private IEnumerator CorrutinaImpulsoAereo(float duracion, float escalaGravedad, float impulsoLateral)
+    {
+        enHangTime = true;
+        rb.gravityScale = escalaGravedad;
+        float dirX = Mathf.Sign(transform.localScale.x);
+        rb.velocity = new Vector2(dirX * impulsoLateral, rb.velocity.y);
+        yield return new WaitForSeconds(duracion);
+        enHangTime = false;
+    }
+
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireCube(controladorSuelo.position, dimensionCaja);
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireCube(controladorPared.position, dimensionCajaPared);
+        //Gizmos.color = Color.red;
+        //Gizmos.DrawWireCube(controladorPared.position, dimensionCajaPared);
     }
 }

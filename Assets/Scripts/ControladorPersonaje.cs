@@ -1,94 +1,4 @@
-﻿//using System.Collections;
-//using System.Collections.Generic;
-//using UnityEngine;
-
-//public class ControladorPersonaje : MonoBehaviour
-//{
-//    public Animator anim;
-//    public Animation aanim;
-
-//    [SerializeField] private Transform controladorGolpe;
-//    [SerializeField] private float radioGolpe;
-//    [SerializeField] private float dañoGolpe;
-//    [SerializeField] private float tiempoEntreAtaques;
-//    [SerializeField] private float tiempoSiguienteAtaque;
-
-//    void Start()
-//    {
-//        anim = GetComponent<Animator>();
-//    }
-
-//    private void Update()
-//    {
-//        if (tiempoEntreAtaques > 0)
-//        {
-//            tiempoSiguienteAtaque -= Time.deltaTime;
-//        }
-
-//        if (Input.GetMouseButtonDown(0) && tiempoSiguienteAtaque <= 0)
-//        {
-//            Golpe();
-//            tiempoSiguienteAtaque = tiempoEntreAtaques;
-//        }
-//    }
-
-//    private void Golpe()
-//    {
-//        anim.SetTrigger("Golpe");
-
-//        Collider2D[] objetos = Physics2D.OverlapCircleAll(controladorGolpe.position, radioGolpe);
-//        foreach (Collider2D colisionador in objetos)
-//        {
-//            if (colisionador.CompareTag("Enemigo"))
-//            {
-//                IDamageable damageable = colisionador.GetComponent<IDamageable>();
-//                if (damageable != null)
-//                {
-//                    damageable.TomarDaño(dañoGolpe);
-//                }
-//                else
-//                {
-//                    COPIAENEMIGOSCRIPT enemigoViejo = colisionador.GetComponent<COPIAENEMIGOSCRIPT>();
-//                    if (enemigoViejo != null)
-//                    {
-//                        enemigoViejo.TomarDaño(dañoGolpe);
-//                    }
-//                }
-//            }
-//            else if (colisionador.CompareTag("Boss"))
-//            {
-//                Enemigo boss = colisionador.GetComponent<Enemigo>();
-//                if (boss != null)
-//                {
-//                    boss.TomarDañoEnemigo(dañoGolpe);
-//                }
-//            }
-//            else if (colisionador.CompareTag("Bell"))
-//            {
-//                BellInteractable bell = colisionador.GetComponent<BellInteractable>();
-
-//                if (bell != null)
-//                {
-//                    Debug.Log($"🔔 Campana golpeada: {bell.name}");
-
-//                    bell.Hit();
-//                }
-//                else
-//                {
-//                    Debug.LogWarning("Campana sin BellInteractable en: " + colisionador.name);
-//                }
-//            }
-//        }
-//    }
-
-//    private void OnDrawGizmos()
-//    {
-//        Gizmos.color = Color.red;
-//        Gizmos.DrawWireSphere(controladorGolpe.position, radioGolpe);
-//    }
-//}
-
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -104,16 +14,23 @@ public class ControladorPersonaje : MonoBehaviour
     [Header("Combo")]
     [SerializeField] private float ventanaCombo = 0.3f;
 
+    [Header("Ataque Aéreo")]
+    [SerializeField] private float escalaGravedadHangTime = 0.2f;
+    [SerializeField] private float hangTimeDuracion = 0.18f;
+    [SerializeField] private float impulsoLateralAereo = 2.5f;
+
     private bool atacando = false;
     private bool comboEnCola = false;
     private int pasoCombo = 0;
     private Coroutine coroutineAtaque;
+    private MovimientoPersonaje movimiento;
 
     private static readonly string[] triggersPorPaso = { "", "Golpe", "Combo2", "Combo3" };
 
     void Start()
     {
         anim = GetComponent<Animator>();
+        movimiento = GetComponent<MovimientoPersonaje>();
     }
 
     void Update()
@@ -121,14 +38,13 @@ public class ControladorPersonaje : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             if (!atacando)
-            {
                 IniciarAtaque(1);
-            }
             else
-            {
                 comboEnCola = true;
-            }
         }
+
+        if (movimiento != null)
+            anim.SetBool("AtacandoEnAire", atacando && !movimiento.EstaEnSuelo);
     }
 
     private void IniciarAtaque(int paso)
@@ -144,6 +60,9 @@ public class ControladorPersonaje : MonoBehaviour
         anim.ResetTrigger("Combo2");
         anim.ResetTrigger("Combo3");
         anim.SetTrigger(triggersPorPaso[paso]);
+
+        if (movimiento != null && !movimiento.EstaEnSuelo)
+            movimiento.AplicarImpulsoAereo(hangTimeDuracion, escalaGravedadHangTime, impulsoLateralAereo);
 
         coroutineAtaque = StartCoroutine(EsperarFinAtaque());
     }
