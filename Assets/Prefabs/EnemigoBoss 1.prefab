@@ -213,11 +213,15 @@ MonoBehaviour:
   vida: 100
   barraVida: {fileID: 7613526388572092629}
   vidaMaxima: 100
+  distanciaVisibilidad: 8
   rb: {fileID: 3712394655599513476}
   jugador: {fileID: 0}
   controladorAtaque: {fileID: 3712394655504971208}
-  radioAtaque: 2
+  radioAtaque: 3
   "da\xF1oAtaque": 150
+  cooldownVolteo: 0.5
+  tiempoMaximoAtascado: 0.3
+  umbralMovimiento: 0.005
 --- !u!95 &3712394655599513472
 Animator:
   serializedVersion: 4

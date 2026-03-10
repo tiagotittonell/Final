@@ -10,6 +10,7 @@ public class ControladorPersonaje : MonoBehaviour
     [SerializeField] private Transform controladorGolpe;
     [SerializeField] private float radioGolpe = 1f;
     [SerializeField] private float dañoGolpe = 10f;
+    [SerializeField] private GameObject prefabEfectoGolpe;
 
     [Header("Combo")]
     [SerializeField] private float ventanaCombo = 0.3f;
@@ -105,6 +106,16 @@ public class ControladorPersonaje : MonoBehaviour
         }
     }
 
+    private void SpawnEfectoGolpe(Collider2D colisionador)
+    {
+        if (prefabEfectoGolpe == null) return;
+        Vector2 direccion = ((Vector2)colisionador.bounds.center - (Vector2)controladorGolpe.position).normalized;
+        Vector2 puntoImpacto = (Vector2)controladorGolpe.position + direccion * radioGolpe;
+
+        float yRot = transform.localScale.x < 0f ? 180f : 0f;
+        Instantiate(prefabEfectoGolpe, puntoImpacto, Quaternion.Euler(0f, yRot, 0f));
+    }
+
     // ==========================
     // DAÑO — llamado desde Animation Event en el frame exacto del golpe
     // ==========================
@@ -121,6 +132,7 @@ public class ControladorPersonaje : MonoBehaviour
                 if (damageable != null)
                 {
                     damageable.TomarDaño(dañoGolpe);
+                    SpawnEfectoGolpe(colisionador);
                 }
                 else
                 {
@@ -128,15 +140,17 @@ public class ControladorPersonaje : MonoBehaviour
                     if (enemigoViejo != null)
                     {
                         enemigoViejo.TomarDaño(dañoGolpe);
+                        SpawnEfectoGolpe(colisionador);
                     }
                 }
             }
             else if (colisionador.CompareTag("Boss"))
             {
-                Enemigo boss = colisionador.GetComponent<Enemigo>();
+                IDamageable boss = colisionador.GetComponent<IDamageable>();
                 if (boss != null)
                 {
                     boss.TomarDaño(dañoGolpe);
+                    SpawnEfectoGolpe(colisionador);
                 }
             }
             else if (colisionador.CompareTag("Bell"))
@@ -153,6 +167,16 @@ public class ControladorPersonaje : MonoBehaviour
                 if (dummy != null)
                 {
                     dummy.ReceiveHit();
+                    SpawnEfectoGolpe(colisionador);
+                }
+                else
+                {
+                    DummyBrekeableTutorial2 dummyAire = colisionador.GetComponent<DummyBrekeableTutorial2>();
+                    if (dummyAire != null)
+                    {
+                        dummyAire.ReceiveHit();
+                        SpawnEfectoGolpe(colisionador);
+                    }
                 }
             }
         }

@@ -18,10 +18,13 @@ public class VidaPersonaje : MonoBehaviour
 
     private void Start()
     {
-        vida = vidaMaxima;
+        vida = GestorJugador.tieneVidaGuardada ? GestorJugador.vidaGuardada : vidaMaxima;
 
         if (barraVida != null)
-            barraVida.InicializarBarraDeVida(vida);
+        {
+            barraVida.InicializarBarraDeVida(vidaMaxima);
+            barraVida.CambiarVidaActual(vida);
+        }
         else
             Debug.LogError("[VidaPersonaje] barraVida no está asignada en el Inspector");
 
@@ -80,6 +83,12 @@ public class VidaPersonaje : MonoBehaviour
         animator.SetTrigger("Hurt");
 
         StartCoroutine(PerderControl());
+    }
+
+    private void OnDestroy()
+    {
+        if (!estaMuerto)
+            GestorJugador.GuardarVida(vida);
     }
 
 }

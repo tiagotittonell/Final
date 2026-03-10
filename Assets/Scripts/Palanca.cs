@@ -48,6 +48,7 @@ public class Palanca : MonoBehaviour {
 
     private void ActivarCamaraSecundaria()
     {
+        camaraSecundaria.targetDisplay = 0;
         camaraPrincipal.enabled = false;
         camaraSecundaria.enabled = true;
 

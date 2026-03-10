@@ -7,10 +7,8 @@ public class GestorEscenas : MonoBehaviour
 
     public static void CargarGameOver()
     {
-        // Guarda la escena actual
         ultimaEscena = SceneManager.GetActiveScene().name;
-
-        // Carga la escena de Game Over
+        GestorJugador.Resetear();
         SceneManager.LoadScene("PantallaDerrota");
     }
 }

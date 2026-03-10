@@ -67,6 +67,8 @@ public class SpiderController : EnemigoBase
     [SerializeField] private float velocidadCaminar = 2.5f;
     [SerializeField] private float tiempoEnSuelo = 6f;
     private float timerSuelo;
+    [SerializeField] private float intervaloTelaranaEnBorde = 3f;
+    private float timerCrearTelaranaEnBorde = 0f;
 
     [Header("Ataque Cuerpo a Cuerpo")]
     [SerializeField] private Transform controladorAtaqueMelee;
@@ -227,7 +229,7 @@ public class SpiderController : EnemigoBase
         }
     }
 
-    private void CrearTelarana()
+    private void CrearTelarana(float? dirPreferida = null)
     {
         if (prefabTelarana == null)
         {
@@ -256,17 +258,17 @@ public class SpiderController : EnemigoBase
         if (colPrefab != null)
             anchoNueva = colPrefab.bounds.size.x;
 
+        float dir = dirPreferida.HasValue ? Mathf.Sign(dirPreferida.Value) : (Random.value < 0.5f ? -1f : 1f);
+
         float posX;
         if (colRef != null)
         {
             // Posicionar a la izquierda o derecha del borde de la referencia
-            float dir = Random.value < 0.5f ? -1f : 1f;
             float bordeRef = dir > 0 ? colRef.bounds.max.x : colRef.bounds.min.x;
             posX = bordeRef + dir * (anchoNueva * 0.5f);
         }
         else
         {
-            float dir = Random.value < 0.5f ? -1f : 1f;
             posX = referencia.position.x + dir * (anchoNueva > 0 ? anchoNueva : 3f);
         }
 
@@ -302,6 +304,7 @@ public class SpiderController : EnemigoBase
     private void LogicaTelarana()
     {
         rb.gravityScale = 0f;
+        rb.velocity = Vector2.zero;
 
         if (pausadoPorAtaque) return;
 
@@ -487,6 +490,7 @@ public class SpiderController : EnemigoBase
         rb.velocity = Vector2.zero;
         timerSuelo = tiempoEnSuelo;
         timerMelee = 0f;
+        timerCrearTelaranaEnBorde = 0f;
     }
 
     private void LogicaSuelo()
@@ -532,9 +536,51 @@ public class SpiderController : EnemigoBase
             animator.SetBool(AnimWalk, Mathf.Abs(rb.velocity.x) > 0.1f);
     }
 
+    private bool ObtenerLimitesTelaranas(out float minX, out float maxX)
+    {
+        minX = float.MaxValue;
+        maxX = float.MinValue;
+        telaranas.RemoveAll(t => t == null);
+        foreach (var t in telaranas)
+        {
+            Collider2D col = t.GetComponent<Collider2D>();
+            if (col != null)
+            {
+                if (col.bounds.min.x < minX) minX = col.bounds.min.x;
+                if (col.bounds.max.x > maxX) maxX = col.bounds.max.x;
+            }
+            else
+            {
+                if (t.position.x < minX) minX = t.position.x;
+                if (t.position.x > maxX) maxX = t.position.x;
+            }
+        }
+        return minX != float.MaxValue;
+    }
+
     private void CaminarHaciaJugador()
     {
         float dir = Mathf.Sign(jugador.position.x - transform.position.x);
+
+        if (ObtenerLimitesTelaranas(out float minX, out float maxX))
+        {
+            float posX = transform.position.x;
+            bool enBorde = (dir < 0 && posX <= minX + 0.15f) || (dir > 0 && posX >= maxX - 0.15f);
+
+            if (enBorde)
+            {
+                rb.velocity = new Vector2(0f, rb.velocity.y);
+                timerCrearTelaranaEnBorde += Time.deltaTime;
+                if (timerCrearTelaranaEnBorde >= intervaloTelaranaEnBorde)
+                {
+                    timerCrearTelaranaEnBorde = 0f;
+                    CrearTelarana(dir);
+                }
+                return;
+            }
+        }
+
+        timerCrearTelaranaEnBorde = 0f;
         rb.velocity = new Vector2(dir * velocidadCaminar, rb.velocity.y);
     }
 

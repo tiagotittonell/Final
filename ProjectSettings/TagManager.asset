@@ -27,7 +27,7 @@ TagManager:
   - ESCALERAS
   - SPAWN
   - CAMARA
-  - 
+  - HitEffect
   - 
   - 
   - 
@@ -47,4 +47,16 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Found
+    uniqueID: 1218154795
+    locked: 0
+  - name: UiScene
+    uniqueID: 836035027
+    locked: 0
+  - name: PJ
+    uniqueID: 3092015657
+    locked: 0
+  - name: HittEffects
+    uniqueID: 3685492251
     locked: 0
