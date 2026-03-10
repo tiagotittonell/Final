@@ -39,8 +39,15 @@ public class VidaPersonaje : MonoBehaviour
         movimientoJugador.sePuedeMover = true;
     }
 
-    private IEnumerator Muerte()
+    private IEnumerator ProcesarMuerte()
     {
+        yield return new WaitForEndOfFrame();
+        animator.SetFloat("VelocidadY", 0f);
+        animator.SetFloat("VelocidadX", 0f);
+        animator.SetBool("enSuelo", true);
+        animator.SetBool("Escalar", false);
+        animator.SetBool("EsDobleSalto", false);
+        animator.SetTrigger("Muerte");
         yield return new WaitForSeconds(2f);
         GestorEscenas.CargarGameOver();
     }
@@ -74,8 +81,15 @@ public class VidaPersonaje : MonoBehaviour
             estaMuerto = true;
             movimientoJugador.sePuedeMover = false;
             movimientoJugador.enabled = false;
-            animator.SetTrigger("Muerte");
-            StartCoroutine(Muerte());
+            rb.velocity = Vector2.zero;
+            rb.gravityScale = 0f;
+            rb.isKinematic = true;
+            animator.SetFloat("VelocidadY", 0f);
+            animator.SetFloat("VelocidadX", 0f);
+            animator.SetBool("enSuelo", true);
+            animator.SetBool("Escalar", false);
+            animator.SetBool("EsDobleSalto", false);
+            StartCoroutine(ProcesarMuerte());
             return;
         }
 
@@ -89,6 +103,13 @@ public class VidaPersonaje : MonoBehaviour
     {
         if (!estaMuerto)
             GestorJugador.GuardarVida(vida);
+    }
+
+    public void Curar(float cantidad)
+    {
+        if (estaMuerto) return;
+        vida = Mathf.Min(vida + cantidad, vidaMaxima);
+        barraVida.CambiarVidaActual(vida);
     }
 
 }

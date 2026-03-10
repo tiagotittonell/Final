@@ -44,6 +44,9 @@ public class ControladorPersonaje : MonoBehaviour
                 comboEnCola = true;
         }
 
+        if (Input.GetKeyDown(KeyCode.E))
+            GestorConsumibles.Instance?.UsarConsumible();
+
         if (movimiento != null)
             anim.SetBool("AtacandoEnAire", atacando && !movimiento.EstaEnSuelo);
     }
