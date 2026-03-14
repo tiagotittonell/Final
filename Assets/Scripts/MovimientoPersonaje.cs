@@ -18,6 +18,7 @@ public class MovimientoPersonaje : MonoBehaviour
     private float movimientoHorizontal = 0f;
     [SerializeField] private float velocidadDeMovimiento;
     [Range(0, 0.3f)][SerializeField] private float suavizadoMovimiento;
+    [SerializeField] private float tiempoDeceleracion = 0.15f;
     private Vector3 velocidad = Vector3.zero;
     private bool mirandoDerecha = true;
 
@@ -31,7 +32,6 @@ public class MovimientoPersonaje : MonoBehaviour
     private bool salto = false;
 
     [SerializeField] private float multiplicadorCaida = 2.5f;
-    [SerializeField] private float multiplicadorSaltoCorto = 2f;
 
     [SerializeField] private float velocidadDash;
     [SerializeField] private float tiempoDash;
@@ -110,10 +110,8 @@ public class MovimientoPersonaje : MonoBehaviour
 
         if (!escalando && /*!deslizando &&*/ !estaDashing && !enHangTime)
         {
-            if (rb.velocity.y < 0)
+            if (rb.velocity.y != 0)
                 rb.gravityScale = gravedadInicial * multiplicadorCaida;
-            else if (rb.velocity.y > 0 && !UnityEngine.Input.GetButton("Jump"))
-                rb.gravityScale = gravedadInicial * multiplicadorSaltoCorto;
             else
                 rb.gravityScale = gravedadInicial;
         }
@@ -154,7 +152,7 @@ public class MovimientoPersonaje : MonoBehaviour
             }
         }
 
-        if (UnityEngine.Input.GetKeyDown(KeyCode.C) && puedeHacerDash)
+        if (UnityEngine.Input.GetKeyDown(KeyCode.LeftShift) && puedeHacerDash)
         {
             StartCoroutine(Dash());
         }
@@ -217,7 +215,8 @@ public class MovimientoPersonaje : MonoBehaviour
         if (!enHangTime)
         {
             Vector3 velocidadObjetivo = new Vector2(mover, rb.velocity.y);
-            rb.velocity = Vector3.SmoothDamp(rb.velocity, velocidadObjetivo, ref velocidad, suavizadoMovimiento);
+            float tiempoSuave = (mover == 0f && enSuelo && !estaDashing && !escalando) ? tiempoDeceleracion : suavizadoMovimiento;
+            rb.velocity = Vector3.SmoothDamp(rb.velocity, velocidadObjetivo, ref velocidad, tiempoSuave);
         }
         //}
 

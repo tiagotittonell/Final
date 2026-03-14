@@ -101,7 +101,7 @@ public class VidaPersonaje : MonoBehaviour
 
     private void OnDestroy()
     {
-        if (!estaMuerto)
+        if (!estaMuerto && !GestorJugador.bloquearGuardado)
             GestorJugador.GuardarVida(vida);
     }
 

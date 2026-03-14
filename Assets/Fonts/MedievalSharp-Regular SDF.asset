@@ -123,8 +123,8 @@ MonoBehaviour:
   m_Version: 1.1.0
   m_SourceFontFileGUID: 99047ca7f7d6027419596a4dc30e0152
   m_SourceFontFile_EditorRef: {fileID: 12800000, guid: 99047ca7f7d6027419596a4dc30e0152, type: 3}
-  m_SourceFontFile: {fileID: 12800000, guid: 99047ca7f7d6027419596a4dc30e0152, type: 3}
-  m_AtlasPopulationMode: 1
+  m_SourceFontFile: {fileID: 0}
+  m_AtlasPopulationMode: 0
   m_FaceInfo:
     m_FaceIndex: 0
     m_FamilyName: MedievalSharp

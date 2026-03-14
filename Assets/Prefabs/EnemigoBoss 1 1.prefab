@@ -594,9 +594,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aac930b3ca682564c960985699c5346c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vida: 1000
+  vida: 5000
   barraVida: {fileID: 2793577188323030046}
-  vidaMaxima: 1000
+  vidaMaxima: 5000
   distanciaVisibilidad: 8
   rb: {fileID: 9000858416101933903}
   jugador: {fileID: 0}

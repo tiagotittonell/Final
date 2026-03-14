@@ -55,6 +55,7 @@ public class GestorConsumibles : MonoBehaviour
 
     private void OnDestroy()
     {
-        GestorJugador.consumiblesGuardados = cantidad;
+        if (!GestorJugador.bloquearGuardado)
+            GestorJugador.consumiblesGuardados = cantidad;
     }
 }

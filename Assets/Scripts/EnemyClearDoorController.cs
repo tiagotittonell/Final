@@ -6,6 +6,9 @@ public class EnemyClearDoorController : MonoBehaviour
     [Header("Enemies (asignar por Inspector)")]
     [SerializeField] private List<GameObject> enemies = new List<GameObject>();
 
+    [Header("Almas (emparejar por índice con Enemies)")]
+    [SerializeField] private List<SoulController> souls = new List<SoulController>();
+
     [Header("Door")]
     [SerializeField] private DoorControllerLVL4 door;
 
@@ -31,25 +34,34 @@ public class EnemyClearDoorController : MonoBehaviour
         if (door == null) return;
         if (enemies == null || enemies.Count == 0) return;
 
-        // Si alguno sigue vivo/activo, no abre
+        bool todosEliminados = true;
+
         for (int i = 0; i < enemies.Count; i++)
         {
             GameObject e = enemies[i];
+            bool muerto = e == null || !e.activeInHierarchy;
 
-            // Destruido => eliminado
-            if (e == null) continue;
-
-            // Si está activo en jerarquía => sigue vivo
-            if (e.activeInHierarchy)
-                return;
+            if (muerto)
+            {
+                if (i < souls.Count && souls[i] != null)
+                {
+                    souls[i].Desaparecer();
+                    souls[i] = null;
+                }
+            }
+            else
+            {
+                todosEliminados = false;
+            }
         }
 
-        // Todos eliminados/inactivos => abrir
-        door.OpenDoor();
-        _opened = true;
-
-        CancelInvoke(nameof(CheckEnemies));
-        enabled = false;
+        if (todosEliminados)
+        {
+            door.OpenDoor();
+            _opened = true;
+            CancelInvoke(nameof(CheckEnemies));
+            enabled = false;
+        }
     }
 
     // Por si querés setear enemigos por código

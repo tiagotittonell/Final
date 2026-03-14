@@ -21,13 +21,13 @@ AnimationClip:
   - curve:
     - time: 0
       value: {fileID: 2335949746256416935, guid: 3accdbde4e56f5c4e9cfa311b8cef55f, type: 3}
-    - time: 0.16666667
+    - time: 0.083333336
       value: {fileID: 2281034495841147979, guid: 3accdbde4e56f5c4e9cfa311b8cef55f, type: 3}
-    - time: 0.33333334
+    - time: 0.16666667
       value: {fileID: -8790582103094051324, guid: 3accdbde4e56f5c4e9cfa311b8cef55f, type: 3}
-    - time: 0.5
+    - time: 0.25
       value: {fileID: 4910841173174485456, guid: 3accdbde4e56f5c4e9cfa311b8cef55f, type: 3}
-    - time: 0.6666667
+    - time: 0.33333334
       value: {fileID: -7048519384785837501, guid: 3accdbde4e56f5c4e9cfa311b8cef55f, type: 3}
     attribute: m_Sprite
     path: 
@@ -58,7 +58,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.68333334
+    m_StopTime: 0.35000002
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -78,7 +78,7 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_Events:
-  - time: 0.33333334
+  - time: 0.16666667
     functionName: "AplicarDa\xF1o"
     data: 
     objectReferenceParameter: {fileID: 0}

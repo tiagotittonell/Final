@@ -608,17 +608,16 @@ MonoBehaviour:
   velocidadRebote: {x: 10, y: 10}
   damage_: 0
   empuje: 0
-  velocidadDeMovimiento: 12.5
-  suavizadoMovimiento: 0.071
+  velocidadDeMovimiento: 18
+  suavizadoMovimiento: 0.152
   deadzoneVelocidadX: 0.05
-  fuerzaSalto: 11
+  fuerzaSalto: 19
   queEsSuelo:
     serializedVersion: 2
     m_Bits: 8
   controladorSuelo: {fileID: 2238526509726506942}
   dimensionCaja: {x: 1.09, y: 0.15}
   multiplicadorCaida: 5
-  multiplicadorSaltoCorto: 2
   velocidadDash: 3.5
   tiempoDash: 0.4
   sePuedeMover: 1

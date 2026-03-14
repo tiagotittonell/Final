@@ -125,9 +125,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30cca47acb572774a91975f418b67ea4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  golpesParaCaer: 3
+  golpesParaCaer: 1
   gravityScale: 5
   fuerzaRotacion: 120
+  frenradoRotacion: 3
   tiempoDestruirse: 4
   shakeDuration: 0.1
   shakeMagnitude: 0.05
