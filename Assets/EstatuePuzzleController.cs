@@ -1,0 +1,53 @@
+using UnityEngine;
+using UnityEngine.Events;
+
+/// <summary>
+/// Manager del puzzle de las 4 estatuas.
+/// Escucha los cambios de cada estatua y activa la recompensa cuando
+/// todas tienen el medallón correcto.
+/// </summary>
+public class EstatuePuzzleController : MonoBehaviour
+{
+    [Header("Estatuas del puzzle (arrastrar las 4)")]
+    [SerializeField] private EstatuaPuzzle[] estatuas;
+
+    [Header("Al resolver el puzzle")]
+    [SerializeField] private UnityEvent onPuzzleResuelto;
+
+    private bool puzzleResuelto = false;
+
+    // ?????????????????????????????????????????????????????????????????????????
+
+    private void Start()
+    {
+        foreach (var e in estatuas)
+            if (e != null) e.OnMedallonCambiado += VerificarSolucion;
+    }
+
+    private void OnDestroy()
+    {
+        foreach (var e in estatuas)
+            if (e != null) e.OnMedallonCambiado -= VerificarSolucion;
+    }
+
+    // ?????????????????????????????????????????????????????????????????????????
+
+    private void VerificarSolucion()
+    {
+        if (puzzleResuelto) return;
+
+        foreach (var e in estatuas)
+        {
+            if (e == null || !e.EsCorrecto) return;
+        }
+
+        // Todas correctas ? resolver
+        puzzleResuelto = true;
+        Debug.Log("[EstatuePuzzle] Puzzle resuelto — invocando onPuzzleResuelto");
+
+        foreach (var e in estatuas)
+            e?.Bloquear();
+
+        onPuzzleResuelto.Invoke();
+    }
+}

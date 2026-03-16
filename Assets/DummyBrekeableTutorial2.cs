@@ -93,6 +93,6 @@ public class DummyBrekeableTutorial2 : MonoBehaviour
             rb.angularVelocity = Random.Range(-fuerzaRotacion, fuerzaRotacion);
         }
 
-        //Destroy(gameObject, tiempoDestruirse);
+        Destroy(gameObject, tiempoDestruirse);
     }
 }

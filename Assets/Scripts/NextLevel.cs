@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
 
-public class NextLevel3 : MonoBehaviour
+public class NextLevel : MonoBehaviour
 {
     void Start()
     {
@@ -14,7 +14,7 @@ public class NextLevel3 : MonoBehaviour
     {
         if (collision.CompareTag("PJ")){
 
-            SceneManager.LoadScene("Nivel 3");   
+            SceneManager.LoadScene("Nivel 8");   
 
         }
     }

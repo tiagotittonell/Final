@@ -9,7 +9,7 @@ public class VidaPersonaje : MonoBehaviour
     [SerializeField] private float vida;
     [SerializeField] private BarraDeVida barraVida;
     private MovimientoPersonaje movimientoJugador;
-    [SerializeField] private float tiempoPerdidaControl = 2f; 
+    [SerializeField] private float tiempoPerdidaControl = 0.12f; 
     private Animator animator;
     [SerializeField] private float vidaMaxima;
     [SerializeField] private float fuerzaEmpuje = 10f; 
@@ -32,9 +32,10 @@ public class VidaPersonaje : MonoBehaviour
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
     }
-    private IEnumerator PerderControl()
+    private IEnumerator PerderControl(Vector2 dirKnockback)
     {
         movimientoJugador.sePuedeMover = false;
+        rb.velocity = new Vector2(dirKnockback.x * fuerzaEmpuje, fuerzaEmpuje * 0.3f);
         yield return new WaitForSeconds(tiempoPerdidaControl);
         movimientoJugador.sePuedeMover = true;
     }
@@ -56,21 +57,20 @@ public class VidaPersonaje : MonoBehaviour
     {
         if (estaMuerto) return;
 
-        float vidaAntes = vida;
-
         vida -= daño;
-
-        Debug.Log("DAMAGE RECIBIDO: " + daño + " vidaAntes=" + vidaAntes + " vidaAhora=" + vida);
 
         barraVida.CambiarVidaActual(vida);
 
+        Vector2 dirKnockback = Vector2.right;
         Vector2 dirShake = Vector2.down;
         Collider2D[] cercanos = Physics2D.OverlapCircleAll(transform.position, 6f);
         foreach (Collider2D c in cercanos)
         {
             if (c.CompareTag("Enemigo") || c.CompareTag("Boss"))
             {
-                dirShake = ((Vector2)(c.transform.position - transform.position)).normalized;
+                Vector2 diff = (Vector2)(transform.position - c.transform.position);
+                dirKnockback = diff.normalized;
+                dirShake     = -dirKnockback;
                 break;
             }
         }
@@ -96,7 +96,7 @@ public class VidaPersonaje : MonoBehaviour
         animator.ResetTrigger("Hurt");
         animator.SetTrigger("Hurt");
 
-        StartCoroutine(PerderControl());
+        StartCoroutine(PerderControl(dirKnockback));
     }
 
     private void OnDestroy()

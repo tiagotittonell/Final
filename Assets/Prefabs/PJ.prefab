@@ -610,6 +610,7 @@ MonoBehaviour:
   empuje: 0
   velocidadDeMovimiento: 18
   suavizadoMovimiento: 0.152
+  tiempoDeceleracion: 0.08
   deadzoneVelocidadX: 0.05
   fuerzaSalto: 19
   queEsSuelo:
@@ -676,9 +677,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   vida: 500
   barraVida: {fileID: 8903828215136069051}
-  tiempoPerdidaControl: 1
+  tiempoPerdidaControl: 0
   vidaMaxima: 500
-  fuerzaEmpuje: 10
+  fuerzaEmpuje: 0
 --- !u!1 &2238526510841352316
 GameObject:
   m_ObjectHideFlags: 0

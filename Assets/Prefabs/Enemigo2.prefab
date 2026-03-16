@@ -172,7 +172,7 @@ MonoBehaviour:
   rango: {fileID: 8150452700346735651}
   Hit: {fileID: 8150452701119090017}
   rb: {fileID: 0}
-  vida: 400
+  vida: 700
 --- !u!1 &8150452700346735651
 GameObject:
   m_ObjectHideFlags: 0
