@@ -300,7 +300,7 @@ MonoBehaviour:
   medallon_Sol: {fileID: 939226563}
   medallon_Luna: {fileID: 204915393}
   medallon_Estrella: {fileID: 1217694901}
-  medallonCorrecto: 1
+  medallonCorrecto: 2
   medallonInicial: 1
   indicadorF: {fileID: 0}
 --- !u!61 &13134774
@@ -8035,7 +8035,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a198348c9a9ffa4dbf4ecb2549e40b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nombreEscena: Nivel 3
+  nombreEscena: Nivel 7
 --- !u!61 &1364710324
 BoxCollider2D:
   m_ObjectHideFlags: 0

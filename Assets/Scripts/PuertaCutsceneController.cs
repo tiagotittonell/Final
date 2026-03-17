@@ -23,7 +23,6 @@ public class PuertaCutsceneController : MonoBehaviour
     [Header("Personaje")]
     [SerializeField] private MovimientoPersonaje movimiento;
 
-    // -------------------------------------------------------------------------
 
     public void IniciarCutscene()
     {
@@ -38,17 +37,14 @@ public class PuertaCutsceneController : MonoBehaviour
 
     private IEnumerator Cutscene()
     {
-        // 1. Bloquear al jugador
         movimiento.sePuedeMover = false;
         Debug.Log("[PuertaCutscene] Jugador bloqueado — deslizando hacia puerta");
 
         yield return new WaitForSeconds(tiempoEspera);
 
-        // 2. Subir prioridad de la cam de puerta ? Cinemachine desliza hasta ella
         camPuerta.Priority = camJugador.Priority + 10;
         yield return new WaitForSeconds(tiempoBlend);
 
-        // 3. Abrir la puerta
         Debug.Log("[PuertaCutscene] Cambiando sprites de puerta");
         if (puertaCerrada != null) puertaCerrada.SetActive(false);
         else Debug.LogWarning("[PuertaCutscene] puertaCerrada no asignada");
@@ -57,12 +53,10 @@ public class PuertaCutsceneController : MonoBehaviour
 
         yield return new WaitForSeconds(tiempoEnPuerta);
 
-        // 4. Bajar prioridad ? Cinemachine vuelve al jugador
         Debug.Log("[PuertaCutscene] Volviendo al jugador");
         camPuerta.Priority = 0;
         yield return new WaitForSeconds(tiempoBlend);
 
-        // 5. Devolver control al jugador
         movimiento.sePuedeMover = true;
         Debug.Log("[PuertaCutscene] Cinemática terminada");
     }

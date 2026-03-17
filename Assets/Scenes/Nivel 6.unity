@@ -5551,7 +5551,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2838165549809673545, guid: 1937e7f6a9016d6468d3d319d75f0172, type: 3}
       propertyPath: vida
-      value: 1000
+      value: 4000
       objectReference: {fileID: 0}
     - target: {fileID: 2838165549809673545, guid: 1937e7f6a9016d6468d3d319d75f0172, type: 3}
       propertyPath: danoCaida
@@ -5563,7 +5563,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2838165549809673545, guid: 1937e7f6a9016d6468d3d319d75f0172, type: 3}
       propertyPath: vidaMaxima
-      value: 1000
+      value: 4000
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1937e7f6a9016d6468d3d319d75f0172, type: 3}

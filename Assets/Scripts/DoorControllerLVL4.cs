@@ -71,7 +71,7 @@ public class DoorControllerLVL4 : MonoBehaviour
             return;
         }
 
-        Debug.Log("[DoorController] Cargando escena 'Nivel 5'...");
-        SceneManager.LoadScene("Nivel 5");
+        Debug.Log("[DoorController] Cargando escena 'Nivel 9'...");
+        SceneManager.LoadScene("Nivel 9");
     }
 }

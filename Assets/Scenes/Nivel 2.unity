@@ -5472,6 +5472,11 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3612049330396687003, guid: 39b90712b254f9e40b1128423ea75981, type: 3}
+      propertyPath: m_text
+      value: Si consigues presionar la tecla "Shift" tu personaje se desplazara rapidamente,
+        podras evitar trampas mortales
+      objectReference: {fileID: 0}
+    - target: {fileID: 3612049330396687003, guid: 39b90712b254f9e40b1128423ea75981, type: 3}
       propertyPath: m_fontAsset
       value: 
       objectReference: {fileID: 11400000, guid: 641c3bd6f8ab00e46bb3dda9c6c409f5, type: 2}

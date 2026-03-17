@@ -16,7 +16,7 @@ public class DestroyAfterTime : MonoBehaviour
 
     private IEnumerator DestroyAfterAnimation(Animator animator)
     {
-        yield return null; // espera un frame para que el Animator inicialice el estado
+        yield return null; 
         float length = animator.GetCurrentAnimatorStateInfo(0).length;
         Destroy(gameObject, length);
     }

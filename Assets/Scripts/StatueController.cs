@@ -34,7 +34,7 @@ public class StatueController : MonoBehaviour
         panelTutorial.SetActive(false);
         Time.timeScale = 1f;
         panelActivo = false;
-        yaInteractuo = true; // la estatua queda usada
+        yaInteractuo = true; 
     }
 
     private void OnTriggerEnter2D(Collider2D col)

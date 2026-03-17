@@ -6,13 +6,11 @@ public class DummyBrekeableTutorial2 : MonoBehaviour
     [Header("Golpes para caer")]
     [SerializeField] private int golpesParaCaer = 3;
 
-    [Header("Física al caer")]
     [SerializeField] private float gravityScale = 5f;
     [SerializeField] private float fuerzaRotacion = 35f;
     [SerializeField] private float frenradoRotacion = 3f;
     [SerializeField] private float tiempoDestruirse = 4f;
 
-    [Header("Efectos de golpe")]
     [SerializeField] private float shakeDuration = 0.1f;
     [SerializeField] private float shakeMagnitude = 0.05f;
     [SerializeField] private float flashDuration = 0.08f;
@@ -80,7 +78,6 @@ public class DummyBrekeableTutorial2 : MonoBehaviour
     {
         cayendo = true;
 
-        // Esperar a que termine el flash antes de caer
         yield return new WaitForSeconds(shakeDuration + flashDuration + 0.05f);
 
         transform.localPosition = posicionLocalOriginal;

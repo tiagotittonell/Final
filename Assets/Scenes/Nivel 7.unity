@@ -333,7 +333,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 22527166}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6.9794445, y: -33.65511, z: 120.7}
+  m_LocalPosition: {x: -6.9723063, y: -33.65511, z: 120.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -683,6 +683,52 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4c982269016456b4bad3db44c7da536e, type: 3}
+--- !u!1 &641932189
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 641932191}
+  - component: {fileID: 641932190}
+  m_Layer: 0
+  m_Name: LevelLancerEnemyController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &641932190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 641932189}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c83364887355d3a49967814c4f1b9ace, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  escenaSiguiente: Nivel 4
+  delayCargar: 2
+--- !u!4 &641932191
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 641932189}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 22.78996, y: -63.364902, z: -0.5000832}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &698553098 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3653327988838501959, guid: 15719cb9dccf81544863d678aeeb3534, type: 3}
@@ -4066,8 +4112,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3653327990396294415, guid: 15719cb9dccf81544863d678aeeb3534, type: 3}
       propertyPath: vida
-      value: 3500
+      value: 2600
       objectReference: {fileID: 0}
+    - target: {fileID: 3653327990396294415, guid: 15719cb9dccf81544863d678aeeb3534, type: 3}
+      propertyPath: fuente
+      value: 
+      objectReference: {fileID: 12800000, guid: 99047ca7f7d6027419596a4dc30e0152, type: 3}
     - target: {fileID: 3653327990396294415, guid: 15719cb9dccf81544863d678aeeb3534, type: 3}
       propertyPath: alturaVuelo
       value: 10
@@ -4093,6 +4143,10 @@ PrefabInstance:
       value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 3653327990396294415, guid: 15719cb9dccf81544863d678aeeb3534, type: 3}
+      propertyPath: distanciaRetroceso
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3653327990396294415, guid: 15719cb9dccf81544863d678aeeb3534, type: 3}
       propertyPath: tiempoEsperaEnAire
       value: 0.6
       objectReference: {fileID: 0}
@@ -4103,6 +4157,26 @@ PrefabInstance:
     - target: {fileID: 6043846327616037360, guid: 15719cb9dccf81544863d678aeeb3534, type: 3}
       propertyPath: m_Name
       value: LancerEnemy 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7436504816058307147, guid: 15719cb9dccf81544863d678aeeb3534, type: 3}
+      propertyPath: fuente
+      value: 
+      objectReference: {fileID: 11400000, guid: 641c3bd6f8ab00e46bb3dda9c6c409f5, type: 2}
+    - target: {fileID: 7436504816058307147, guid: 15719cb9dccf81544863d678aeeb3534, type: 3}
+      propertyPath: colorTexto.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7436504816058307147, guid: 15719cb9dccf81544863d678aeeb3534, type: 3}
+      propertyPath: colorTexto.g
+      value: 0.93247044
+      objectReference: {fileID: 0}
+    - target: {fileID: 7436504816058307147, guid: 15719cb9dccf81544863d678aeeb3534, type: 3}
+      propertyPath: colorTexto.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7436504816058307147, guid: 15719cb9dccf81544863d678aeeb3534, type: 3}
+      propertyPath: nombreEnemigo
+      value: Lancer
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 15719cb9dccf81544863d678aeeb3534, type: 3}
