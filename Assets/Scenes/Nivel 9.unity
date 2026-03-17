@@ -336,6 +336,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8150452700184478483, guid: dfdc8192b0052ca4b98457a718110f5f, type: 3}
+      propertyPath: m_SortingLayer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8150452700184478483, guid: dfdc8192b0052ca4b98457a718110f5f, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -2120684857
+      objectReference: {fileID: 0}
     - target: {fileID: 8150452700184478488, guid: dfdc8192b0052ca4b98457a718110f5f, type: 3}
       propertyPath: m_Name
       value: Enemigo2
@@ -737,6 +745,18 @@ PrefabInstance:
     - target: {fileID: 3563398610466924060, guid: eb69e2b6b58a7554e93beaa5bded6eea, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6910920394218091190, guid: eb69e2b6b58a7554e93beaa5bded6eea, type: 3}
+      propertyPath: solucion.Array.data[1]
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6910920394218091190, guid: eb69e2b6b58a7554e93beaa5bded6eea, type: 3}
+      propertyPath: solucion.Array.data[2]
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6910920394218091190, guid: eb69e2b6b58a7554e93beaa5bded6eea, type: 3}
+      propertyPath: solucion.Array.data[3]
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6910920394218091190, guid: eb69e2b6b58a7554e93beaa5bded6eea, type: 3}
       propertyPath: onPuzzleResuelto.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -2680,7 +2700,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1361119373}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.02, y: 25.02, z: 0.20856236}
+  m_LocalPosition: {x: -2.02, y: 25.02, z: 0.6}
   m_LocalScale: {x: 3, y: 3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3093,11 +3113,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8192957525376447335, guid: fe7d9731ff3dac2498814f4b755b0215, type: 3}
       propertyPath: m_SortingLayer
-      value: 2
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8192957525376447335, guid: fe7d9731ff3dac2498814f4b755b0215, type: 3}
       propertyPath: m_SortingLayerID
-      value: 836035027
+      value: -2120684857
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fe7d9731ff3dac2498814f4b755b0215, type: 3}
@@ -3503,6 +3523,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8150452700184478483, guid: dfdc8192b0052ca4b98457a718110f5f, type: 3}
+      propertyPath: m_SortingLayer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8150452700184478483, guid: dfdc8192b0052ca4b98457a718110f5f, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -2120684857
+      objectReference: {fileID: 0}
     - target: {fileID: 8150452700184478488, guid: dfdc8192b0052ca4b98457a718110f5f, type: 3}
       propertyPath: m_Name
       value: Enemigo2 (1)
@@ -3574,11 +3602,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 413207713408383247, guid: d546d850247b0b9438aec7e553562bca, type: 3}
       propertyPath: m_SortingLayer
-      value: 3
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 413207713408383247, guid: d546d850247b0b9438aec7e553562bca, type: 3}
       propertyPath: m_SortingLayerID
-      value: -1202951639
+      value: -2120684857
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d546d850247b0b9438aec7e553562bca, type: 3}
@@ -4320,6 +4348,14 @@ PrefabInstance:
     - target: {fileID: 8192957525376447334, guid: fe7d9731ff3dac2498814f4b755b0215, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8192957525376447335, guid: fe7d9731ff3dac2498814f4b755b0215, type: 3}
+      propertyPath: m_SortingLayer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8192957525376447335, guid: fe7d9731ff3dac2498814f4b755b0215, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -2120684857
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fe7d9731ff3dac2498814f4b755b0215, type: 3}

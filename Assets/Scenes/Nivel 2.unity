@@ -5459,6 +5459,14 @@ PrefabInstance:
       propertyPath: interactKey
       value: 102
       objectReference: {fileID: 0}
+    - target: {fileID: 2421952995399885975, guid: 39b90712b254f9e40b1128423ea75981, type: 3}
+      propertyPath: m_SortingLayer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2421952995399885975, guid: 39b90712b254f9e40b1128423ea75981, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -2120684857
+      objectReference: {fileID: 0}
     - target: {fileID: 2575945223694947692, guid: 39b90712b254f9e40b1128423ea75981, type: 3}
       propertyPath: damage
       value: 200
@@ -5470,6 +5478,10 @@ PrefabInstance:
     - target: {fileID: 2575945223694947692, guid: 39b90712b254f9e40b1128423ea75981, type: 3}
       propertyPath: useCollision
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2687702800615192447, guid: 39b90712b254f9e40b1128423ea75981, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 3612049330396687003, guid: 39b90712b254f9e40b1128423ea75981, type: 3}
       propertyPath: m_text
@@ -5726,7 +5738,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8183094883993129977, guid: 39b90712b254f9e40b1128423ea75981, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -124.34
+      value: -124.27
       objectReference: {fileID: 0}
     - target: {fileID: 8450137881942090139, guid: 39b90712b254f9e40b1128423ea75981, type: 3}
       propertyPath: m_Name

@@ -14,7 +14,7 @@ public class NextLevel : MonoBehaviour
     {
         if (collision.CompareTag("PJ")){
 
-            SceneManager.LoadScene("Nivel 8");   
+            SceneManager.LoadScene("Nivel 3");   
 
         }
     }

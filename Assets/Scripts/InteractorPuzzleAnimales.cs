@@ -21,10 +21,53 @@ public class InteractorPuzzleAnimales : MonoBehaviour
     private bool _puzzleResuelto = false;
     private GameObject _instancia;
 
+    private SpriteRenderer[] outlineRenderers;
+
 
     private void Awake()
     {
         if (textoHint != null) textoHint.gameObject.SetActive(false);
+    }
+
+    private void Start()
+    {
+        CrearOutlines();
+    }
+
+    private void CrearOutlines()
+    {
+        SpriteRenderer[] todos = GetComponentsInChildren<SpriteRenderer>();
+
+        Shader fillShader = Resources.Load<Shader>("SpriteFill");
+        if (fillShader == null) fillShader = Shader.Find("Custom/SpriteFill");
+        Material fillMat  = fillShader != null ? new Material(fillShader) { color = Color.white } : null;
+
+        outlineRenderers = new SpriteRenderer[todos.Length];
+        for (int i = 0; i < todos.Length; i++)
+        {
+            SpriteRenderer sr = todos[i];
+
+            GameObject outlineGO = new GameObject("Outline");
+            outlineGO.transform.SetParent(sr.transform, false);
+            outlineGO.transform.localScale = Vector3.one * 1.06f;
+
+            SpriteRenderer outlineSR = outlineGO.AddComponent<SpriteRenderer>();
+            outlineSR.sprite = sr.sprite;
+            outlineSR.color = Color.white;
+            outlineSR.sortingLayerID = sr.sortingLayerID;
+            outlineSR.sortingOrder = sr.sortingOrder - 1;
+            if (fillMat != null) outlineSR.material = fillMat;
+            outlineSR.enabled = false;
+
+            outlineRenderers[i] = outlineSR;
+        }
+    }
+
+    private void SetOutline(bool activo)
+    {
+        if (outlineRenderers == null) return;
+        foreach (SpriteRenderer sr in outlineRenderers)
+            if (sr != null) sr.enabled = activo;
     }
 
     private void Update()
@@ -58,6 +101,7 @@ public class InteractorPuzzleAnimales : MonoBehaviour
             textoHint.gameObject.SetActive(true);
         }
 
+        if (!_puzzleResuelto) SetOutline(true);
         Debug.Log("[PuzzleAnimales] Jugador dentro del trigger. Presioná F para abrir.");
     }
 
@@ -68,6 +112,7 @@ public class InteractorPuzzleAnimales : MonoBehaviour
         _jugadorCerca = false;
 
         if (textoHint != null) textoHint.gameObject.SetActive(false);
+        SetOutline(false);
 
         if (_puzzleAbierto && !_puzzleResuelto)
             CerrarPuzzle();
@@ -94,6 +139,7 @@ public class InteractorPuzzleAnimales : MonoBehaviour
 
         if (textoHint         != null) textoHint.gameObject.SetActive(false);
         if (movimientoJugador != null) movimientoJugador.sePuedeMover = false;
+        SetOutline(false);
         Time.timeScale = 0f;
     }
 
@@ -117,6 +163,7 @@ public class InteractorPuzzleAnimales : MonoBehaviour
         if (_instancia        != null) { Destroy(_instancia); _instancia = null; }
         if (movimientoJugador != null) movimientoJugador.sePuedeMover = true;
         if (textoHint         != null) textoHint.gameObject.SetActive(false);
+        SetOutline(false);
         Time.timeScale = 1f;
 
         Debug.Log("[PuzzleAnimales] ? ¡Puzzle resuelto correctamente!");

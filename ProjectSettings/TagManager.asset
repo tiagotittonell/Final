@@ -54,9 +54,15 @@ TagManager:
   - name: UiScene
     uniqueID: 836035027
     locked: 0
+  - name: Enemigos
+    uniqueID: 2174282439
+    locked: 0
   - name: PJ
     uniqueID: 3092015657
     locked: 0
   - name: HittEffects
     uniqueID: 3685492251
+    locked: 0
+  - name: SpriteFondo
+    uniqueID: 2121356199
     locked: 0

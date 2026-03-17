@@ -114,6 +114,18 @@ public class LancerEnemy : EnemigoBase
         enSuelo = controladorSuelo != null &&
                   Physics2D.OverlapBox(controladorSuelo.position, dimensionCajaSuelo, 0f, capaSuelo);
 
+        // Respaldo: si controladorSuelo no detecta suelo, verificar con los bounds del collider propio
+        if (!enSuelo)
+        {
+            Collider2D cuerpo = GetComponent<Collider2D>();
+            if (cuerpo != null)
+                enSuelo = Physics2D.OverlapCircle(
+                    new Vector2(cuerpo.bounds.center.x, cuerpo.bounds.min.y - 0.05f),
+                    0.15f, capaSuelo);
+        }
+
+
+
         if (timerMelee   > 0) timerMelee   -= Time.deltaTime;
         if (timerBarrido > 0) timerBarrido -= Time.deltaTime;
         if (timerAereo   > 0) timerAereo   -= Time.deltaTime;
