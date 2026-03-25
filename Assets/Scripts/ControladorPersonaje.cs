@@ -1,4 +1,4 @@
-ï»¿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,16 +6,17 @@ public class ControladorPersonaje : MonoBehaviour
 {
     public Animator anim;
 
-    [Header("DaÃ±o")]
+    [Header("Daño")]
     [SerializeField] private Transform controladorGolpe;
     [SerializeField] private float radioGolpe = 1f;
-    [SerializeField] private float daÃ±oGolpe = 10f;
+    [SerializeField] private float dañoGolpe = 10f;
     [SerializeField] private GameObject prefabEfectoGolpe;
+    [SerializeField] private EfectoImpacto[] particulasPorTipo;
 
     [Header("Combo")]
     [SerializeField] private float ventanaCombo = 0.3f;
 
-    [Header("Ataque AÃ©reo")]
+    [Header("Ataque Aéreo")]
     [SerializeField] private float escalaGravedadHangTime = 0.2f;
     [SerializeField] private float hangTimeDuracion = 0.18f;
     [SerializeField] private float impulsoLateralAereo = 2.5f;
@@ -65,6 +66,8 @@ public class ControladorPersonaje : MonoBehaviour
         anim.ResetTrigger("Combo3");
         anim.SetTrigger(triggersPorPaso[paso]);
 
+        AudioManager.Instance?.ReproducirGolpe(paso);
+
         if (movimiento != null && !movimiento.EstaEnSuelo)
             movimiento.AplicarImpulsoAereo(hangTimeDuracion, escalaGravedadHangTime, impulsoLateralAereo);
 
@@ -77,7 +80,7 @@ public class ControladorPersonaje : MonoBehaviour
         yield return null;
         yield return null;
 
-        // Espera a que termine la transiciÃ³n de entrada al estado de ataque
+        // Espera a que termine la transición de entrada al estado de ataque
         while (anim.IsInTransition(0))
             yield return null;
 
@@ -95,11 +98,11 @@ public class ControladorPersonaje : MonoBehaviour
 
         if (comboEnCola)
         {
-            // Espera a que termine la transiciÃ³n a Idle antes de setear el siguiente trigger
+            // Espera a que termine la transición a Idle antes de setear el siguiente trigger
             while (anim.IsInTransition(0))
                 yield return null;
 
-            int siguiente = (pasoCombo % 3) + 1; // 1â†’2â†’3â†’1
+            int siguiente = (pasoCombo % 3) + 1; // 1?2?3?1
             IniciarAtaque(siguiente);
         }
         else
@@ -109,41 +112,65 @@ public class ControladorPersonaje : MonoBehaviour
         }
     }
 
-    private void SpawnEfectoGolpe(Collider2D colisionador)
+    [System.Serializable]
+    private struct EfectoImpacto
+    {
+        public string tag;
+        public ParticleSystem prefabParticulas;
+    }
+
+    private void SpawnParticulasPorTag(string tag, Collider2D colisionador, Vector2 direccion)
+    {
+        if (particulasPorTipo == null) return;
+        foreach (EfectoImpacto efecto in particulasPorTipo)
+        {
+            if (efecto.tag == tag && efecto.prefabParticulas != null)
+            {
+                Vector2 puntoImpacto = (Vector2)controladorGolpe.position + direccion * radioGolpe;
+                float angulo = Mathf.Atan2(direccion.y, direccion.x) * Mathf.Rad2Deg;
+                Instantiate(efecto.prefabParticulas, puntoImpacto, Quaternion.Euler(0f, 0f, angulo));
+                return;
+            }
+        }
+    }
+
+    private void SpawnEfectoGolpe(Collider2D colisionador, Vector2 direccion)
     {
         if (prefabEfectoGolpe == null) return;
-        Vector2 direccion = ((Vector2)colisionador.bounds.center - (Vector2)controladorGolpe.position).normalized;
         Vector2 puntoImpacto = (Vector2)controladorGolpe.position + direccion * radioGolpe;
-
-        float yRot = transform.localScale.x < 0f ? 180f : 0f;
-        Instantiate(prefabEfectoGolpe, puntoImpacto, Quaternion.Euler(0f, yRot, 0f));
+        float angulo = Mathf.Atan2(direccion.y, direccion.x) * Mathf.Rad2Deg;
+        Instantiate(prefabEfectoGolpe, puntoImpacto, Quaternion.Euler(0f, 0f, angulo));
     }
 
     // ==========================
-    // DAÃ‘O â€” llamado desde Animation Event en el frame exacto del golpe
+    // DAÑO — llamado desde Animation Event en el frame exacto del golpe
     // ==========================
-    public void AplicarDaÃ±o()
+    public void AplicarDaño()
     {
         if (controladorGolpe == null) return;
 
         Collider2D[] objetos = Physics2D.OverlapCircleAll(controladorGolpe.position, radioGolpe);
         foreach (Collider2D colisionador in objetos)
         {
-            if (colisionador.CompareTag("Enemigo"))
+            Vector2 direccion = ((Vector2)colisionador.bounds.center - (Vector2)controladorGolpe.position).normalized;
+
+            if (colisionador.CompareTag("Enemigo") || colisionador.CompareTag("LancerEnemy") || colisionador.CompareTag("EnemyFly"))
             {
                 IDamageable damageable = colisionador.GetComponent<IDamageable>();
                 if (damageable != null)
                 {
-                    damageable.TomarDaÃ±o(daÃ±oGolpe);
-                    SpawnEfectoGolpe(colisionador);
+                    damageable.TomarDaño(dañoGolpe);
+                    SpawnEfectoGolpe(colisionador, direccion);
+                    SpawnParticulasPorTag(colisionador.tag, colisionador, direccion);
                 }
                 else
                 {
                     COPIAENEMIGOSCRIPT enemigoViejo = colisionador.GetComponent<COPIAENEMIGOSCRIPT>();
                     if (enemigoViejo != null)
                     {
-                        enemigoViejo.TomarDaÃ±o(daÃ±oGolpe);
-                        SpawnEfectoGolpe(colisionador);
+                        enemigoViejo.TomarDaño(dañoGolpe);
+                        SpawnEfectoGolpe(colisionador, direccion);
+                        SpawnParticulasPorTag(colisionador.tag, colisionador, direccion);
                     }
                 }
             }
@@ -152,8 +179,9 @@ public class ControladorPersonaje : MonoBehaviour
                 IDamageable boss = colisionador.GetComponent<IDamageable>();
                 if (boss != null)
                 {
-                    boss.TomarDaÃ±o(daÃ±oGolpe);
-                    SpawnEfectoGolpe(colisionador);
+                    boss.TomarDaño(dañoGolpe);
+                    SpawnEfectoGolpe(colisionador, direccion);
+                    SpawnParticulasPorTag(colisionador.tag, colisionador, direccion);
                 }
             }
             else if (colisionador.CompareTag("Bell"))
@@ -170,7 +198,8 @@ public class ControladorPersonaje : MonoBehaviour
                 if (dummy != null)
                 {
                     dummy.ReceiveHit();
-                    SpawnEfectoGolpe(colisionador);
+                    SpawnEfectoGolpe(colisionador, direccion);
+                    SpawnParticulasPorTag(colisionador.tag, colisionador, direccion);
                 }
                 else
                 {
@@ -178,7 +207,8 @@ public class ControladorPersonaje : MonoBehaviour
                     if (dummyAire != null)
                     {
                         dummyAire.ReceiveHit();
-                        SpawnEfectoGolpe(colisionador);
+                        SpawnEfectoGolpe(colisionador, direccion);
+                        SpawnParticulasPorTag(colisionador.tag, colisionador, direccion);
                     }
                 }
             }

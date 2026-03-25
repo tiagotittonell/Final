@@ -29,6 +29,7 @@ public class MovimientoPersonaje : MonoBehaviour
     [SerializeField] private Transform controladorSuelo;
     [SerializeField] private Vector2 dimensionCaja = new Vector2(0.5f, 0.1f);
     private bool enSuelo;
+    private bool enSueloAnterior = false;
     private bool salto = false;
 
     [SerializeField] private float multiplicadorCaida = 2.5f;
@@ -81,6 +82,11 @@ public class MovimientoPersonaje : MonoBehaviour
     {
         DetectarEntrada();
         ActualizarAnimaciones();
+        ActualizarPasos();
+
+        if (enSuelo && !enSueloAnterior)
+            AudioManager.Instance?.ReproducirAterrizaje();
+        enSueloAnterior = enSuelo;
     }
 
     private void FixedUpdate()
@@ -241,6 +247,7 @@ public class MovimientoPersonaje : MonoBehaviour
 
     private void Salto()
     {
+        AudioManager.Instance?.ReproducirSalto();
         rb.velocity = new Vector2(rb.velocity.x, fuerzaSalto);
         enSuelo = false;
     }
@@ -277,6 +284,7 @@ public class MovimientoPersonaje : MonoBehaviour
         puedeHacerDash = false;
         rb.gravityScale = 0;
         rb.velocity = new Vector2(velocidadDash * transform.localScale.x, 0);
+        AudioManager.Instance?.ReproducirDash();
         anim.SetTrigger("Dash");
         trailRender.emitting = true;
 
@@ -319,6 +327,28 @@ public class MovimientoPersonaje : MonoBehaviour
         rb.velocity = new Vector2(dirX * impulsoLateral, rb.velocity.y);
         yield return new WaitForSeconds(duracion);
         enHangTime = false;
+    }
+
+    [SerializeField] private float intervaloPaso = 0.35f;
+    private float _temporizadorPaso;
+
+    private void ActualizarPasos()
+    {
+        bool seEstaMoviendo = enSuelo && !estaDashing && UnityEngine.Input.GetAxisRaw("Horizontal") != 0f;
+
+        if (seEstaMoviendo)
+        {
+            _temporizadorPaso += Time.deltaTime;
+            if (_temporizadorPaso >= intervaloPaso)
+            {
+                _temporizadorPaso = 0f;
+                AudioManager.Instance?.ReproducirPaso();
+            }
+        }
+        else
+        {
+            _temporizadorPaso = intervaloPaso;
+        }
     }
 
     private void OnDrawGizmos()

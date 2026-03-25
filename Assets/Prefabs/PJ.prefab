@@ -539,7 +539,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1202951639
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 20
   m_Sprite: {fileID: -3318188226485093758, guid: ae72133dacba6ec4eb33ecde48f50e56, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -568,7 +568,8 @@ MonoBehaviour:
   controladorGolpe: {fileID: 2238526510841352315}
   radioGolpe: 1
   "da\xF1oGolpe": 200
-  prefabEfectoGolpe: {fileID: 0}
+  prefabEfectoGolpe: {fileID: 4502061505936237571, guid: 1646e69b49d9b0a47ae0c6695866e0c9, type: 3}
+  particulasPorTipo: []
   ventanaCombo: 0.3
   escalaGravedadHangTime: 0.2
   hangTimeDuracion: 0.18
@@ -609,7 +610,7 @@ MonoBehaviour:
   damage_: 0
   empuje: 0
   velocidadDeMovimiento: 18
-  suavizadoMovimiento: 0.152
+  suavizadoMovimiento: 0
   tiempoDeceleracion: 0.08
   deadzoneVelocidadX: 0.05
   fuerzaSalto: 19
@@ -626,6 +627,7 @@ MonoBehaviour:
   maxSaltosAire: 1
   velocidadEscalar: 6.5
   velocidadAnimacionEscalar: 1
+  intervaloPaso: 0.35
 --- !u!70 &2238526510694004912
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

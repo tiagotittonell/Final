@@ -168,7 +168,7 @@ public class COPIAENEMIGOSCRIPT : EnemigoBase
 
     private IEnumerator DestruirEnemigo()
     {
-        
+        yield return new WaitForSeconds(2);
         yield return new WaitForSeconds(ani.GetCurrentAnimatorStateInfo(0).length);
         Destroy(gameObject);
     }

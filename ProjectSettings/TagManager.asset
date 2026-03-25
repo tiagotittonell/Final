@@ -11,6 +11,8 @@ TagManager:
   - Bell
   - Telarana
   - Breakable
+  - LancerEnemy
+  - EnemyFly
   layers:
   - Default
   - TransparentFX
