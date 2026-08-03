@@ -130,6 +130,12 @@ public class MovimientoPersonaje : MonoBehaviour
 
     private void DetectarEntrada()
     {
+        if (!sePuedeMover)
+        {
+            movimientoHorizontal = 0f;
+            return;
+        }
+
         movimientoHorizontal = UnityEngine.Input.GetAxisRaw("Horizontal") * velocidadDeMovimiento;
 
         //deslizando = !enSuelo && enPared && tiempoEnAire > tiempoGraciaParede;
@@ -327,6 +333,27 @@ public class MovimientoPersonaje : MonoBehaviour
         rb.velocity = new Vector2(dirX * impulsoLateral, rb.velocity.y);
         yield return new WaitForSeconds(duracion);
         enHangTime = false;
+    }
+
+    public void EstablecerVelocidadCinematica(float velocidadHorizontal)
+    {
+        if (rb == null)
+            rb = GetComponent<Rigidbody2D>();
+
+        if (velocidadHorizontal > 0f && !mirandoDerecha)
+            Girar();
+        else if (velocidadHorizontal < 0f && mirandoDerecha)
+            Girar();
+
+        rb.velocity = new Vector2(velocidadHorizontal, rb.velocity.y);
+    }
+
+    public void DetenerMovimientoCinematico()
+    {
+        if (rb == null)
+            rb = GetComponent<Rigidbody2D>();
+
+        rb.velocity = new Vector2(0f, rb.velocity.y);
     }
 
     [SerializeField] private float intervaloPaso = 0.35f;

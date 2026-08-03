@@ -29,6 +29,6 @@ public class ControladorLVL3 : MonoBehaviour
 
     private void CargarEscenaVictoria()
     {
-        SceneManager.LoadScene("Nivel 8");
+        SceneManager.LoadScene("Nivel 4");
     }
 }

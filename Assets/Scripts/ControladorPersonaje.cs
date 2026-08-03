@@ -6,17 +6,17 @@ public class ControladorPersonaje : MonoBehaviour
 {
     public Animator anim;
 
-    [Header("Daño")]
+    [Header("DaÃ±o")]
     [SerializeField] private Transform controladorGolpe;
     [SerializeField] private float radioGolpe = 1f;
-    [SerializeField] private float dañoGolpe = 10f;
+    [SerializeField] private float daÃ±oGolpe = 10f;
     [SerializeField] private GameObject prefabEfectoGolpe;
     [SerializeField] private EfectoImpacto[] particulasPorTipo;
 
     [Header("Combo")]
     [SerializeField] private float ventanaCombo = 0.3f;
 
-    [Header("Ataque Aéreo")]
+    [Header("Ataque AÃ©reo")]
     [SerializeField] private float escalaGravedadHangTime = 0.2f;
     [SerializeField] private float hangTimeDuracion = 0.18f;
     [SerializeField] private float impulsoLateralAereo = 2.5f;
@@ -80,7 +80,7 @@ public class ControladorPersonaje : MonoBehaviour
         yield return null;
         yield return null;
 
-        // Espera a que termine la transición de entrada al estado de ataque
+        // Espera a que termine la transiciÃ³n de entrada al estado de ataque
         while (anim.IsInTransition(0))
             yield return null;
 
@@ -98,7 +98,7 @@ public class ControladorPersonaje : MonoBehaviour
 
         if (comboEnCola)
         {
-            // Espera a que termine la transición a Idle antes de setear el siguiente trigger
+            // Espera a que termine la transiciÃ³n a Idle antes de setear el siguiente trigger
             while (anim.IsInTransition(0))
                 yield return null;
 
@@ -115,37 +115,58 @@ public class ControladorPersonaje : MonoBehaviour
     [System.Serializable]
     private struct EfectoImpacto
     {
-        public string tag;
+        public GameObject prefabEnemigo;
         public ParticleSystem prefabParticulas;
     }
 
-    private void SpawnParticulasPorTag(string tag, Collider2D colisionador, Vector2 direccion)
+    private void SpawnEfectoImpacto(Collider2D colisionador, Vector2 direccion)
     {
-        if (particulasPorTipo == null) return;
-        foreach (EfectoImpacto efecto in particulasPorTipo)
+        ParticleSystem efectoSeleccionado = null;
+
+        if (particulasPorTipo != null)
         {
-            if (efecto.tag == tag && efecto.prefabParticulas != null)
+            foreach (EfectoImpacto efecto in particulasPorTipo)
             {
-                Vector2 puntoImpacto = (Vector2)controladorGolpe.position + direccion * radioGolpe;
-                float angulo = Mathf.Atan2(direccion.y, direccion.x) * Mathf.Rad2Deg;
-                Instantiate(efecto.prefabParticulas, puntoImpacto, Quaternion.Euler(0f, 0f, angulo));
-                return;
+                if (efecto.prefabEnemigo == null || efecto.prefabParticulas == null)
+                    continue;
+
+                if (PerteneceAlPrefab(colisionador.transform, efecto.prefabEnemigo))
+                {
+                    efectoSeleccionado = efecto.prefabParticulas;
+                    break;
+                }
             }
         }
-    }
 
-    private void SpawnEfectoGolpe(Collider2D colisionador, Vector2 direccion)
-    {
-        if (prefabEfectoGolpe == null) return;
+        GameObject prefabAInstanciar = efectoSeleccionado != null
+            ? efectoSeleccionado.gameObject
+            : prefabEfectoGolpe;
+
+        if (prefabAInstanciar == null) return;
+
         Vector2 puntoImpacto = (Vector2)controladorGolpe.position + direccion * radioGolpe;
         float angulo = Mathf.Atan2(direccion.y, direccion.x) * Mathf.Rad2Deg;
-        Instantiate(prefabEfectoGolpe, puntoImpacto, Quaternion.Euler(0f, 0f, angulo));
+        Instantiate(prefabAInstanciar, puntoImpacto, Quaternion.Euler(0f, 0f, angulo));
+    }
+
+    private bool PerteneceAlPrefab(Transform objetoGolpeado, GameObject prefabEnemigo)
+    {
+        string nombrePrefab = prefabEnemigo.name;
+
+        for (Transform actual = objetoGolpeado; actual != null; actual = actual.parent)
+        {
+            string nombreObjeto = actual.name.Replace("(Clone)", "").Trim();
+            if (nombreObjeto == nombrePrefab)
+                return true;
+        }
+
+        return false;
     }
 
     // ==========================
-    // DAÑO — llamado desde Animation Event en el frame exacto del golpe
+    // DAÃ‘O â€” llamado desde Animation Event en el frame exacto del golpe
     // ==========================
-    public void AplicarDaño()
+    public void AplicarDaÃ±o()
     {
         if (controladorGolpe == null) return;
 
@@ -159,18 +180,16 @@ public class ControladorPersonaje : MonoBehaviour
                 IDamageable damageable = colisionador.GetComponent<IDamageable>();
                 if (damageable != null)
                 {
-                    damageable.TomarDaño(dañoGolpe);
-                    SpawnEfectoGolpe(colisionador, direccion);
-                    SpawnParticulasPorTag(colisionador.tag, colisionador, direccion);
+                    damageable.TomarDaÃ±o(daÃ±oGolpe);
+                    SpawnEfectoImpacto(colisionador, direccion);
                 }
                 else
                 {
                     COPIAENEMIGOSCRIPT enemigoViejo = colisionador.GetComponent<COPIAENEMIGOSCRIPT>();
                     if (enemigoViejo != null)
                     {
-                        enemigoViejo.TomarDaño(dañoGolpe);
-                        SpawnEfectoGolpe(colisionador, direccion);
-                        SpawnParticulasPorTag(colisionador.tag, colisionador, direccion);
+                        enemigoViejo.TomarDaÃ±o(daÃ±oGolpe);
+                        SpawnEfectoImpacto(colisionador, direccion);
                     }
                 }
             }
@@ -179,9 +198,8 @@ public class ControladorPersonaje : MonoBehaviour
                 IDamageable boss = colisionador.GetComponent<IDamageable>();
                 if (boss != null)
                 {
-                    boss.TomarDaño(dañoGolpe);
-                    SpawnEfectoGolpe(colisionador, direccion);
-                    SpawnParticulasPorTag(colisionador.tag, colisionador, direccion);
+                    boss.TomarDaÃ±o(daÃ±oGolpe);
+                    SpawnEfectoImpacto(colisionador, direccion);
                 }
             }
             else if (colisionador.CompareTag("Bell"))
@@ -198,8 +216,7 @@ public class ControladorPersonaje : MonoBehaviour
                 if (dummy != null)
                 {
                     dummy.ReceiveHit();
-                    SpawnEfectoGolpe(colisionador, direccion);
-                    SpawnParticulasPorTag(colisionador.tag, colisionador, direccion);
+                    SpawnEfectoImpacto(colisionador, direccion);
                 }
                 else
                 {
@@ -207,8 +224,7 @@ public class ControladorPersonaje : MonoBehaviour
                     if (dummyAire != null)
                     {
                         dummyAire.ReceiveHit();
-                        SpawnEfectoGolpe(colisionador, direccion);
-                        SpawnParticulasPorTag(colisionador.tag, colisionador, direccion);
+                        SpawnEfectoImpacto(colisionador, direccion);
                     }
                 }
             }

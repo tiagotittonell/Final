@@ -1282,7 +1282,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c83364887355d3a49967814c4f1b9ace, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  escenaSiguiente: Nivel 4
+  escenaSiguiente: LevelDescend
   delayCargar: 2
 --- !u!4 &641932191
 Transform:
@@ -1545,7 +1545,7 @@ PrefabInstance:
       objectReference: {fileID: 728018670}
     - target: {fileID: 3653327990396294415, guid: 15719cb9dccf81544863d678aeeb3534, type: 3}
       propertyPath: vida
-      value: 2600
+      value: 5000
       objectReference: {fileID: 0}
     - target: {fileID: 3653327990396294415, guid: 15719cb9dccf81544863d678aeeb3534, type: 3}
       propertyPath: fuente

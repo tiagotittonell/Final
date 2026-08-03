@@ -67,11 +67,11 @@ public class DoorControllerLVL4 : MonoBehaviour
 
         if (!_opened)
         {
-            Debug.Log("[DoorController] La puerta no está abierta (_opened = false)");
+            Debug.Log("[DoorController] La puerta no estï¿½ abierta (_opened = false)");
             return;
         }
 
-        Debug.Log("[DoorController] Cargando escena 'Nivel 9'...");
-        SceneManager.LoadScene("Nivel 9");
+        Debug.Log("[DoorController] Cargando escena 'Nivel 8'...");
+        SceneManager.LoadScene("Nivel 8");
     }
 }

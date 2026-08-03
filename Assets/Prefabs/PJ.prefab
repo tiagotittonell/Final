@@ -569,7 +569,15 @@ MonoBehaviour:
   radioGolpe: 1
   "da\xF1oGolpe": 200
   prefabEfectoGolpe: {fileID: 4502061505936237571, guid: 1646e69b49d9b0a47ae0c6695866e0c9, type: 3}
-  particulasPorTipo: []
+  particulasPorTipo:
+  - prefabEnemigo: {fileID: 9000858416101933898, guid: 997efe169081d1743943faa02582f4a7, type: 3}
+    prefabParticulas: {fileID: 2490211757487895088, guid: 5391bb20bec967e4489bceeb8fa7750a, type: 3}
+  - prefabEnemigo: {fileID: 6043846327616037360, guid: 15719cb9dccf81544863d678aeeb3534, type: 3}
+    prefabParticulas: {fileID: 2490211757487895088, guid: 699537a9471dfcf43b1505edbb6f77a4, type: 3}
+  - prefabEnemigo: {fileID: 2838165549809673544, guid: 1937e7f6a9016d6468d3d319d75f0172, type: 3}
+    prefabParticulas: {fileID: 2490211757487895088, guid: 58582d002f59dee40a5f1e0862c8b9bc, type: 3}
+  - prefabEnemigo: {fileID: 6043846327616037360, guid: 15719cb9dccf81544863d678aeeb3534, type: 3}
+    prefabParticulas: {fileID: 2490211757487895088, guid: 699537a9471dfcf43b1505edbb6f77a4, type: 3}
   ventanaCombo: 0.3
   escalaGravedadHangTime: 0.2
   hangTimeDuracion: 0.18

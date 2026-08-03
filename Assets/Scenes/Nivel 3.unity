@@ -264,6 +264,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &82931428 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9000858416101933898, guid: 997efe169081d1743943faa02582f4a7, type: 3}
+  m_PrefabInstance: {fileID: 5723066115865040050}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &129567931
 GameObject:
   m_ObjectHideFlags: 0
@@ -4846,6 +4851,10 @@ PrefabInstance:
       propertyPath: prefabEfectoGolpe
       value: 
       objectReference: {fileID: 4354220329446264662, guid: 8b2b15e7b92d75d4594c9d744ca85190, type: 3}
+    - target: {fileID: 2238526510694004913, guid: 3126a0fc22625c94484549c6b70169b2, type: 3}
+      propertyPath: particulasPorTipo.Array.data[0].prefabEnemigo
+      value: 
+      objectReference: {fileID: 82931428}
     - target: {fileID: 2238526510694004918, guid: 3126a0fc22625c94484549c6b70169b2, type: 3}
       propertyPath: m_RootOrder
       value: 3
