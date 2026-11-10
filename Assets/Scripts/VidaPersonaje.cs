@@ -43,7 +43,7 @@ public class VidaPersonaje : MonoBehaviour
     private IEnumerator PerderControl(Vector2 dirKnockback)
     {
         movimientoJugador.sePuedeMover = false;
-        rb.velocity = new Vector2(dirKnockback.x * fuerzaEmpuje, fuerzaEmpuje * 0.3f);
+        rb.linearVelocity = new Vector2(dirKnockback.x * fuerzaEmpuje, fuerzaEmpuje * 0.3f);
         yield return new WaitForSeconds(tiempoPerdidaControl);
         movimientoJugador.sePuedeMover = true;
     }
@@ -120,7 +120,7 @@ public class VidaPersonaje : MonoBehaviour
 
         if (rb != null)
         {
-            rb.velocity = Vector2.zero;
+            rb.linearVelocity = Vector2.zero;
             rb.gravityScale = 0f;
             rb.isKinematic = true;
         }
@@ -142,7 +142,7 @@ public class VidaPersonaje : MonoBehaviour
 
         foreach (Collider2D colliderJugador in collidersJugador)
         {
-            int cantidad = colliderJugador.OverlapCollider(filtro, resultados);
+            int cantidad = colliderJugador.Overlap(filtro, resultados);
 
             for (int i = 0; i < cantidad; i++)
             {

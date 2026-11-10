@@ -4,7 +4,7 @@ using UnityEngine;
 public class BellPuzzleController : MonoBehaviour
 {
     [Header("Order (set from Inspector)")]
-    [Tooltip("Arrastr· ac· las campanas EN EL ORDEN CORRECTO.")]
+    [Tooltip("Arrastr√° ac√° las campanas EN EL ORDEN CORRECTO.")]
     [SerializeField] private BellInteractable[] correctOrder;
 
     [Header("Door")]
@@ -24,7 +24,7 @@ public class BellPuzzleController : MonoBehaviour
         _solved = false;
         _resetting = false;
 
-        // Vincula autom·ticamente cada campana con este controller
+        // Vincula autom√°ticamente cada campana con este controller
         if (correctOrder != null)
         {
             for (int i = 0; i < correctOrder.Length; i++)
@@ -49,7 +49,7 @@ public class BellPuzzleController : MonoBehaviour
         {
             _index++;
 
-            // CompletÛ la secuencia
+            // Complet√≥ la secuencia
             if (_index >= correctOrder.Length)
             {
                 _solved = true;
@@ -63,7 +63,7 @@ public class BellPuzzleController : MonoBehaviour
         }
         else
         {
-            // FallÛ: reset
+            // Fall√≥: reset
             StartCoroutine(ResetPuzzle(resetDelayOnFail));
         }
     }

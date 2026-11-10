@@ -8,7 +8,7 @@ public class BotonAnimalPuzzle : MonoBehaviour,
     IPointerDownHandler, IPointerUpHandler,
     IPointerClickHandler
 {
-    [Header("Identificación")]
+    [Header("IdentificaciÃ³n")]
     public int id; 
 
     [Header("Colores")]

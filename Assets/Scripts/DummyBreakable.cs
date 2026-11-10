@@ -24,7 +24,7 @@ public class DummyBreakable : MonoBehaviour
         originalPosition = transform.localPosition;
     }
 
-    public void ReceiveHit(float daño = 200f)
+    public void ReceiveHit(float daÃ±o = 200f)
     {
         if (destruido) return;
 
@@ -34,7 +34,7 @@ public class DummyBreakable : MonoBehaviour
             dir = ((Vector2)(transform.position - pj.transform.position)).normalized;
         ControladorCamara.Instance?.ShakeGolpe(dir);
 
-        vida -= daño;
+        vida -= daÃ±o;
 
         StopAllCoroutines();
         StartCoroutine(HitEffect());
@@ -76,7 +76,7 @@ public class DummyBreakable : MonoBehaviour
         yield return new WaitForSeconds(0.05f);
 
         // aca voy a agregar:
-        // partículas, sonido, animación, loot, etc.
+        // partÃ­culas, sonido, animaciÃ³n, loot, etc.
 
         Destroy(gameObject);
     }

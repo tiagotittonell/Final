@@ -139,24 +139,24 @@ public class COPIAENEMIGOSCRIPT : EnemigoBase
         Comportamientos();
     }
 
-    public override void TomarDaño(float daño)
+    public override void TomarDaÃ±o(float daÃ±o)
     {
         if (estaMuerto) return;
 
-        base.TomarDaño(daño);
+        base.TomarDaÃ±o(daÃ±o);
 
-        vida -= daño;
+        vida -= daÃ±o;
 
         if (vida > 0)
         {
-            ani.SetTrigger("Daño");
+            ani.SetTrigger("DaÃ±o");
         }
         else
         {
             estaMuerto = true; 
             ani.SetTrigger("Muerte");
 
-            rb.velocity = Vector2.zero;
+            rb.linearVelocity = Vector2.zero;
             rb.isKinematic = true; 
             GetComponent<Collider2D>().enabled = false;
             rango.GetComponent<Collider2D>().enabled = false;

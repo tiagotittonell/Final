@@ -115,15 +115,15 @@ public class MovimientoPersonaje : MonoBehaviour
 
         if (!escalando && /*!deslizando &&*/ !estaDashing && !enHangTime)
         {
-            if (rb.velocity.y != 0)
+            if (rb.linearVelocity.y != 0)
                 rb.gravityScale = gravedadInicial * multiplicadorCaida;
             else
                 rb.gravityScale = gravedadInicial;
         }
 
-        if (Mathf.Abs(rb.velocity.x) < deadzoneVelocidadX)
+        if (Mathf.Abs(rb.linearVelocity.x) < deadzoneVelocidadX)
         {
-            rb.velocity = new Vector2(0f, rb.velocity.y);
+            rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
         }
     }
 
@@ -171,11 +171,11 @@ public class MovimientoPersonaje : MonoBehaviour
 
     private void ActualizarAnimaciones()
     {
-        float vx = Mathf.Abs(rb.velocity.x);
+        float vx = Mathf.Abs(rb.linearVelocity.x);
         if (vx < deadzoneVelocidadX) vx = 0f;
 
         anim.SetFloat("VelocidadX", vx);
-        anim.SetFloat("VelocidadY", escalando ? 0f : rb.velocity.y);
+        anim.SetFloat("VelocidadY", escalando ? 0f : rb.linearVelocity.y);
         anim.SetBool("enSuelo", enSuelo);
         //anim.SetBool("Deslizando", deslizando);
         anim.SetBool("Escalar", escalando);
@@ -225,9 +225,9 @@ public class MovimientoPersonaje : MonoBehaviour
         //{
         if (!enHangTime)
         {
-            Vector3 velocidadObjetivo = new Vector2(mover, rb.velocity.y);
+            Vector3 velocidadObjetivo = new Vector2(mover, rb.linearVelocity.y);
             float tiempoSuave = (mover == 0f && enSuelo && !estaDashing && !escalando) ? tiempoDeceleracion : suavizadoMovimiento;
-            rb.velocity = Vector3.SmoothDamp(rb.velocity, velocidadObjetivo, ref velocidad, tiempoSuave);
+            rb.linearVelocity = Vector3.SmoothDamp(rb.linearVelocity, velocidadObjetivo, ref velocidad, tiempoSuave);
         }
         //}
 
@@ -253,7 +253,7 @@ public class MovimientoPersonaje : MonoBehaviour
     private void Salto()
     {
         AudioManager.Instance?.ReproducirSalto();
-        rb.velocity = new Vector2(rb.velocity.x, fuerzaSalto);
+        rb.linearVelocity = new Vector2(rb.linearVelocity.x, fuerzaSalto);
         enSuelo = false;
     }
 
@@ -288,7 +288,7 @@ public class MovimientoPersonaje : MonoBehaviour
         sePuedeMover = false;
         puedeHacerDash = false;
         rb.gravityScale = 0;
-        rb.velocity = new Vector2(velocidadDash * transform.localScale.x, 0);
+        rb.linearVelocity = new Vector2(velocidadDash * transform.localScale.x, 0);
         AudioManager.Instance?.ReproducirDash();
         anim.SetTrigger("Dash");
         trailRender.emitting = true;
@@ -307,8 +307,8 @@ public class MovimientoPersonaje : MonoBehaviour
     { 
         if ((UnityEngine.Input.GetAxisRaw("Vertical") != 0 || escalando) && boxCollider.IsTouchingLayers(LayerMask.GetMask("ESCALERAS"))) 
         { 
-            Vector2 velocidadSubida = new Vector2(rb.velocity.x, UnityEngine.Input.GetAxisRaw("Vertical") * velocidadEscalar); 
-            rb.velocity = velocidadSubida; 
+            Vector2 velocidadSubida = new Vector2(rb.linearVelocity.x, UnityEngine.Input.GetAxisRaw("Vertical") * velocidadEscalar);
+            rb.linearVelocity = velocidadSubida;
             rb.gravityScale = 0; escalando = true; 
         } 
         else 
@@ -329,7 +329,7 @@ public class MovimientoPersonaje : MonoBehaviour
         enHangTime = true;
         rb.gravityScale = escalaGravedad;
         float dirX = Mathf.Sign(transform.localScale.x);
-        rb.velocity = new Vector2(dirX * impulsoLateral, rb.velocity.y);
+        rb.linearVelocity = new Vector2(dirX * impulsoLateral, rb.linearVelocity.y);
         yield return new WaitForSeconds(duracion);
         enHangTime = false;
     }
@@ -344,7 +344,7 @@ public class MovimientoPersonaje : MonoBehaviour
         else if (velocidadHorizontal < 0f && mirandoDerecha)
             Girar();
 
-        rb.velocity = new Vector2(velocidadHorizontal, rb.velocity.y);
+        rb.linearVelocity = new Vector2(velocidadHorizontal, rb.linearVelocity.y);
     }
 
     public void DetenerMovimientoCinematico()
@@ -352,7 +352,7 @@ public class MovimientoPersonaje : MonoBehaviour
         if (rb == null)
             rb = GetComponent<Rigidbody2D>();
 
-        rb.velocity = new Vector2(0f, rb.velocity.y);
+        rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
     }
 
     [SerializeField] private float intervaloPaso = 0.35f;

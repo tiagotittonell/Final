@@ -1,19 +1,19 @@
 using System.Collections;
 using UnityEngine;
-using Cinemachine;
+using Unity.Cinemachine;
 
 public class PuertaCutsceneController : MonoBehaviour
 {
     [Header("Cinemachine")]
-    [SerializeField] private CinemachineVirtualCamera camJugador;
-    [SerializeField] private CinemachineVirtualCamera camPuerta;
+    [SerializeField] private CinemachineVirtualCameraBase camJugador;
+    [SerializeField] private CinemachineVirtualCameraBase camPuerta;
 
     [Header("Tiempos (segundos)")]
     [Tooltip("Debe coincidir con el blend time del CinemachineBrain")]
     [SerializeField] private float tiempoBlend    = 1.5f;
-    [Tooltip("Pausa con la c·mara en la puerta antes de volver")]
+    [Tooltip("Pausa con la c√°mara en la puerta antes de volver")]
     [SerializeField] private float tiempoEnPuerta = 1.2f;
-    [Tooltip("Espera antes de que la c·mara empiece a moverse")]
+    [Tooltip("Espera antes de que la c√°mara empiece a moverse")]
     [SerializeField] private float tiempoEspera   = 0.5f;
 
     [Header("Puerta")]
@@ -38,7 +38,7 @@ public class PuertaCutsceneController : MonoBehaviour
     private IEnumerator Cutscene()
     {
         movimiento.sePuedeMover = false;
-        Debug.Log("[PuertaCutscene] Jugador bloqueado ó deslizando hacia puerta");
+        Debug.Log("[PuertaCutscene] Jugador bloqueado ‚Äî deslizando hacia puerta");
 
         yield return new WaitForSeconds(tiempoEspera);
 
@@ -58,6 +58,6 @@ public class PuertaCutsceneController : MonoBehaviour
         yield return new WaitForSeconds(tiempoBlend);
 
         movimiento.sePuedeMover = true;
-        Debug.Log("[PuertaCutscene] Cinem·tica terminada");
+        Debug.Log("[PuertaCutscene] Cinem√°tica terminada");
     }
 }

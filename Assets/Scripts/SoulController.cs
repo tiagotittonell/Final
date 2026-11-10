@@ -3,13 +3,13 @@ using UnityEngine;
 
 public class SoulController : MonoBehaviour
 {
-    [Header("Flotación")]
+    [Header("FlotaciÃ³n")]
     [SerializeField] private float amplitudY = 0.2f;
     [SerializeField] private float velocidadY = 1.5f;
     [SerializeField] private float amplitudX = 0.06f;
     [SerializeField] private float velocidadX = 0.9f;
 
-    [Header("Desaparición")]
+    [Header("DesapariciÃ³n")]
     [SerializeField] private float duracionFade = 0.6f;
 
     private Vector3 posicionBase;

@@ -23,7 +23,7 @@ public class Enemigo3 : MonoBehaviour
     public GameObject rango;
     public GameObject Hit;
 
-    // Variables para el tiempo de reacción del jugador
+    // Variables para el tiempo de reacciÃ³n del jugador
     public float tiempo_reaccion = 1.5f;
     private bool puedeRecibirDanio = false;
 
@@ -112,20 +112,20 @@ public class Enemigo3 : MonoBehaviour
         }
     }
 
-    // Método invocado por el evento de la animación de ataque para realizar el ataque
+    // MÃ©todo invocado por el evento de la animaciÃ³n de ataque para realizar el ataque
     public void RealizarAtaque()
     {
         rango.GetComponent<BoxCollider2D>().enabled = true;
         Hit.GetComponent<BoxCollider2D>().enabled = true;
     }
 
-    // Método invocado por el evento de la animación de ataque para finalizar el ataque
+    // MÃ©todo invocado por el evento de la animaciÃ³n de ataque para finalizar el ataque
     public void FinalizarAtaque()
     {
         atacando = false;
         rango.GetComponent<BoxCollider2D>().enabled = false;
         Hit.GetComponent<BoxCollider2D>().enabled = false;
-        Invoke("HabilitarReaccion", tiempo_reaccion); // Habilitar la reacción después de un tiempo de reacción
+        Invoke("HabilitarReaccion", tiempo_reaccion); // Habilitar la reacciÃ³n despuÃ©s de un tiempo de reacciÃ³n
     }
 
     private void HabilitarReaccion()
@@ -133,16 +133,16 @@ public class Enemigo3 : MonoBehaviour
         puedeRecibirDanio = true;
     }
 
-    // Método para que el jugador ataque al enemigo
+    // MÃ©todo para que el jugador ataque al enemigo
     public void AtacarEnemigo()
     {
         if (puedeRecibirDanio)
         {
             // Realizar las acciones cuando el enemigo es golpeado por el jugador
             // Por ejemplo, reducir la vida del enemigo
-            // También podrías reproducir una animación de golpe al enemigo si es necesario
+            // TambiÃ©n podrÃ­as reproducir una animaciÃ³n de golpe al enemigo si es necesario
 
-            // Desactivar la posibilidad de recibir daño nuevamente hasta el próximo ataque del enemigo
+            // Desactivar la posibilidad de recibir daÃ±o nuevamente hasta el prÃ³ximo ataque del enemigo
             puedeRecibirDanio = false;
         }
     }
@@ -247,14 +247,14 @@ public class Enemigo3 : MonoBehaviour
     //    }
     //}
 
-    //// Método invocado por el evento de la animación de ataque para realizar el ataque
+    //// MÃ©todo invocado por el evento de la animaciÃ³n de ataque para realizar el ataque
     //public void RealizarAtaque()
     //{
     //    rango.GetComponent<BoxCollider2D>().enabled = true;
     //    Hit.GetComponent<BoxCollider2D>().enabled = true;
     //}
 
-    //// Método invocado por el evento de la animación de ataque para finalizar el ataque
+    //// MÃ©todo invocado por el evento de la animaciÃ³n de ataque para finalizar el ataque
     //public void FinalizarAtaque()
     //{
     //    atacando = false;
@@ -482,7 +482,7 @@ public class Enemigo3 : MonoBehaviour
 //                    atacando = true;
 //                    puedeAtacar = false;
 //                    Invoke("RealizarAtaque", 0.5f);
-//                    Invoke("ResetearPuedeAtacar", tiempo_entre_ataques); // Restablecer el valor de puedeAtacar después del tiempo de enfriamiento
+//                    Invoke("ResetearPuedeAtacar", tiempo_entre_ataques); // Restablecer el valor de puedeAtacar despuÃ©s del tiempo de enfriamiento
 //                }
 //                if (!atacando)
 //                {
@@ -503,7 +503,7 @@ public class Enemigo3 : MonoBehaviour
 
 //    public void RealizarAtaque()
 //    {
-//        // Aquí puedes poner el código para realizar el ataque
+//        // AquÃ­ puedes poner el cÃ³digo para realizar el ataque
 //        ani.SetBool("Ataque", true);
 
 //        rango.GetComponent<BoxCollider2D>().enabled = false;
@@ -532,7 +532,7 @@ public class Enemigo3 : MonoBehaviour
 //        puedeAtacar = true;
 //    }
 
-//    // Método para detener el ataque
+//    // MÃ©todo para detener el ataque
 //    public void DetenerAtaque()
 //    {
 //        atacando = false;

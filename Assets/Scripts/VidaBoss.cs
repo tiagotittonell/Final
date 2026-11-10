@@ -22,9 +22,9 @@ public class VidaBoss : MonoBehaviour
     }
  
     
-    public void TomarDañoBarra(float Daño)
+    public void TomarDaÃ±oBarra(float DaÃ±o)
     {
-        vida -= Daño;
+        vida -= DaÃ±o;
 
         barraVida.CambiarVidaActual(vida);
         if (vida <= 0) 

@@ -12,11 +12,11 @@ public class AudioManager : MonoBehaviour
 
     [Header("Personaje - Combate")]
     [SerializeField] private AudioClip[] sonidosGolpe;
-    [SerializeField] private AudioClip sonidoDaño;
+    [SerializeField] private AudioClip sonidoDaÃ±o;
     [SerializeField] private AudioClip sonidoMuerte;
 
     [Header("Enemigos")]
-    [SerializeField] private AudioClip sonidoDañoEnemigo;
+    [SerializeField] private AudioClip sonidoDaÃ±oEnemigo;
     [SerializeField] private AudioClip sonidoMuerteEnemigo;
 
     [Header("Configuracion")]
@@ -70,10 +70,10 @@ public class AudioManager : MonoBehaviour
         sfxSource.PlayOneShot(sonidosGolpe[indice], volumenSFX);
     }
 
-    public void ReproducirDañoPersonaje()
+    public void ReproducirDaÃ±oPersonaje()
     {
-        if (sonidoDaño == null) return;
-        sfxSource.PlayOneShot(sonidoDaño, volumenSFX);
+        if (sonidoDaÃ±o == null) return;
+        sfxSource.PlayOneShot(sonidoDaÃ±o, volumenSFX);
     }
 
     public void ReproducirMuertePersonaje()
@@ -84,10 +84,10 @@ public class AudioManager : MonoBehaviour
 
     // --- Enemigos ---
 
-    public void ReproducirDañoEnemigo()
+    public void ReproducirDaÃ±oEnemigo()
     {
-        if (sonidoDañoEnemigo == null) return;
-        sfxSource.PlayOneShot(sonidoDañoEnemigo, volumenSFX);
+        if (sonidoDaÃ±oEnemigo == null) return;
+        sfxSource.PlayOneShot(sonidoDaÃ±oEnemigo, volumenSFX);
     }
 
     public void ReproducirMuerteEnemigo()

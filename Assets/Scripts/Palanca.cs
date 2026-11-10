@@ -1,5 +1,5 @@
 using System.Collections;
-using Cinemachine;
+using Unity.Cinemachine;
 using TMPro;
 using UnityEngine;
 
@@ -16,8 +16,8 @@ public class Palanca : MonoBehaviour
     [SerializeField] private GameObject puertaAbierta;
 
     [Header("Cinemachine")]
-    [SerializeField] private CinemachineVirtualCamera camaraJugador;
-    [SerializeField] private CinemachineVirtualCamera camaraPuerta;
+    [SerializeField] private CinemachineVirtualCameraBase camaraJugador;
+    [SerializeField] private CinemachineVirtualCameraBase camaraPuerta;
     [SerializeField] private int prioridadCamaraPuerta = 20;
 
     [Header("Tiempos de la cinemática")]

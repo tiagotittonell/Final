@@ -40,7 +40,7 @@ public class ControladorEnemigos : MonoBehaviour
     //    }
     private int enemigosVivos = 0;
 
-    // En el mÈtodo Start, inicializa enemigosVivos a 0.
+    // En el m√©todo Start, inicializa enemigosVivos a 0.
 
     void Start()
     {
@@ -51,7 +51,7 @@ public class ControladorEnemigos : MonoBehaviour
         enemigosVivos = 0;
     }
 
-    // En el mÈtodo Update, controla la creaciÛn de enemigos.
+    // En el m√©todo Update, controla la creaci√≥n de enemigos.
 
     void Update()
     {
@@ -76,7 +76,7 @@ public class ControladorEnemigos : MonoBehaviour
         }
     }
 
-    // Para llevar un registro de cu·ndo un enemigo muere, podrÌas tener una funciÛn adicional que disminuye enemigosVivos cuando sea necesario.
+    // Para llevar un registro de cu√°ndo un enemigo muere, podr√≠as tener una funci√≥n adicional que disminuye enemigosVivos cuando sea necesario.
 
     public void EnemigoMuere()
     {

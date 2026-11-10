@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class EnemigoBase : MonoBehaviour, IDamageable
 {
-    public virtual void TomarDaño(float daño)
+    public virtual void TomarDaÃ±o(float daÃ±o)
     {
-        AudioManager.Instance?.ReproducirDañoEnemigo();
+        AudioManager.Instance?.ReproducirDaÃ±oEnemigo();
 
         Vector2 dir = Vector2.right;
         GameObject pj = GameObject.FindGameObjectWithTag("PJ");

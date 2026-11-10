@@ -100,7 +100,7 @@ public class DescendLevelController : MonoBehaviour
         if (jugadorAplastado || colliderPlaca == null)
             return;
 
-        int cantidadContactos = colliderPlaca.OverlapCollider(filtroContactos, contactos);
+        int cantidadContactos = colliderPlaca.Overlap(filtroContactos, contactos);
 
         for (int i = 0; i < cantidadContactos; i++)
         {

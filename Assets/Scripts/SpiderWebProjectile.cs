@@ -49,7 +49,7 @@ public class SpiderWebProjectile : MonoBehaviour
         {
             var hp = other.GetComponent<VidaPersonaje>();
             if (hp != null)
-                hp.TomarDañoBarra(damage);
+                hp.TomarDaÃ±oBarra(damage);
         }
 
         Destroy(gameObject);

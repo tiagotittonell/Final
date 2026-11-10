@@ -10,7 +10,7 @@ public class EstatuaPuzzle : MonoBehaviour
     [SerializeField] private GameObject medallon_Luna;
     [SerializeField] private GameObject medallon_Estrella;
 
-    [Header("Solución")]
+    [Header("SoluciÃ³n")]
     [SerializeField] private TipoMedallon medallonCorrecto = TipoMedallon.Sol;
 
     [Header("Estado inicial")]

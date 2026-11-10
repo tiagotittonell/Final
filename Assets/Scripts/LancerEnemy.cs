@@ -173,14 +173,14 @@ public class LancerEnemy : EnemigoBase
         estado = Estado.Caminar;
         float dx = jugador.position.x - transform.position.x;
         Girar(dx > 0);
-        rb.velocity = new Vector2(Mathf.Sign(dx) * velocidadCaminar, rb.velocity.y);
+        rb.linearVelocity = new Vector2(Mathf.Sign(dx) * velocidadCaminar, rb.linearVelocity.y);
         anim.SetFloat(HashVelocidadX, velocidadCaminar);
     }
 
     private void SetIdle()
     {
         estado = Estado.Idle;
-        rb.velocity = new Vector2(0f, rb.velocity.y);
+        rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
         anim.SetFloat(HashVelocidadX, 0f);
     }
 
@@ -197,7 +197,7 @@ public class LancerEnemy : EnemigoBase
     {
         estado = Estado.AtaqueMelee;
         timerMelee = cooldownMelee;
-        rb.velocity = Vector2.zero;
+        rb.linearVelocity = Vector2.zero;
         anim.SetFloat(HashVelocidadX, 0f);
         Girar(jugador.position.x > transform.position.x);
         anim.SetTrigger(TrgMelee);
@@ -222,7 +222,7 @@ public class LancerEnemy : EnemigoBase
     {
         estado = Estado.AtaqueBarrido;
         timerBarrido = cooldownBarrido;
-        rb.velocity = Vector2.zero;
+        rb.linearVelocity = Vector2.zero;
         anim.SetFloat(HashVelocidadX, 0f);
 
         float direccionInicial = jugador.position.x < transform.position.x ? -1f : 1f;
@@ -233,10 +233,10 @@ public class LancerEnemy : EnemigoBase
         while (Mathf.Abs(transform.position.x - xRetrocesoInicio) < distanciaRetroceso)
         {
             if (estaMuerto) yield break;
-            rb.velocity = new Vector2(-direccionInicial * velocidadRetroceso, rb.velocity.y);
+            rb.linearVelocity = new Vector2(-direccionInicial * velocidadRetroceso, rb.linearVelocity.y);
             yield return null;
         }
-        rb.velocity = new Vector2(0f, rb.velocity.y);
+        rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
         anim.SetFloat(HashVelocidadX, 0f);
         yield return new WaitForSeconds(pausaRetroceso);
 
@@ -261,7 +261,7 @@ public class LancerEnemy : EnemigoBase
             {
                 if (estaMuerto) yield break;
 
-                rb.velocity = new Vector2(dirX * velocidadBarrido, rb.velocity.y);
+                rb.linearVelocity = new Vector2(dirX * velocidadBarrido, rb.linearVelocity.y);
 
                 float posXActual = transform.position.x;
                 distanciaRecorrida = Mathf.Abs(posXActual - posicionInicialX);
@@ -275,7 +275,7 @@ public class LancerEnemy : EnemigoBase
 
                     if (tiempoAtascado >= 0.1f)
                     {
-                        rb.velocity = new Vector2(0f, rb.velocity.y);
+                        rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
                         break;
                     }
                 }
@@ -298,7 +298,7 @@ public class LancerEnemy : EnemigoBase
                 yield return null;
             }
 
-            rb.velocity = new Vector2(0f, rb.velocity.y);
+            rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
 
             if (i < 2)
                 yield return new WaitForSeconds(pausaEntreBarridos);
@@ -315,7 +315,7 @@ public class LancerEnemy : EnemigoBase
     {
         estado = Estado.AtaqueSalto;
         timerAereo = cooldownAereo;
-        rb.velocity = Vector2.zero;
+        rb.linearVelocity = Vector2.zero;
         anim.SetFloat(HashVelocidadX, 0f);
         anim.SetTrigger(TrgSalto);
 
@@ -327,10 +327,10 @@ public class LancerEnemy : EnemigoBase
         while (transform.position.y < targetY)
         {
             if (estaMuerto) { RestaurarGravedad(); yield break; }
-            rb.velocity = new Vector2(0f, velocidadSubida);
+            rb.linearVelocity = new Vector2(0f, velocidadSubida);
             yield return null;
         }
-        rb.velocity = Vector2.zero;
+        rb.linearVelocity = Vector2.zero;
 
         Vector2 objetivoJugador = jugador.position;
         Girar(objetivoJugador.x > transform.position.x);
@@ -347,7 +347,7 @@ public class LancerEnemy : EnemigoBase
         {
             if (estaMuerto) { RestaurarGravedad(); yield break; }
 
-            rb.velocity = dirDive * velocidadDive;
+            rb.linearVelocity = dirDive * velocidadDive;
             tiempoDive += Time.deltaTime;
 
             if (!dañoAplicado && hitboxAereo != null)
@@ -376,7 +376,7 @@ public class LancerEnemy : EnemigoBase
     private void RestaurarGravedad()
     {
         rb.gravityScale = gravityInicial;
-        rb.velocity = Vector2.zero;
+        rb.linearVelocity = Vector2.zero;
     }
 
     public override void TomarDaño(float daño)
@@ -405,7 +405,7 @@ public class LancerEnemy : EnemigoBase
         estaMuerto = true;
         StopAllCoroutines();
         if (sr != null) sr.color = Color.white;
-        rb.velocity = Vector2.zero;
+        rb.linearVelocity = Vector2.zero;
         rb.gravityScale = gravityInicial;
         anim.SetTrigger(TrgMuerte);
         if (canvasBarraVida != null) Destroy(canvasBarraVida);

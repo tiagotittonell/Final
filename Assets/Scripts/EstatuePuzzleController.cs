@@ -35,7 +35,7 @@ public class EstatuePuzzleController : MonoBehaviour
         }
 
         puzzleResuelto = true;
-        Debug.Log("[EstatuePuzzle] Puzzle resuelto — invocando onPuzzleResuelto");
+        Debug.Log("[EstatuePuzzle] Puzzle resuelto â€” invocando onPuzzleResuelto");
 
         foreach (var e in estatuas)
             e?.Bloquear();

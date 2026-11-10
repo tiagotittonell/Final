@@ -1,14 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
-using Cinemachine;
+using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class CamerasControllerDescend : MonoBehaviour
 {
     [Header("Cámaras")]
-    [SerializeField] private CinemachineVirtualCamera camaraJugador;
-    [SerializeField] private CinemachineVirtualCamera camaraRecorrido;
+    [SerializeField] private CinemachineVirtualCameraBase camaraJugador;
+    [SerializeField] private CinemachineVirtualCameraBase camaraRecorrido;
     [SerializeField] private int prioridadRecorrido = 20;
 
     [Header("Referencias de la escena")]
@@ -220,7 +220,7 @@ public class CamerasControllerDescend : MonoBehaviour
         {
             Rigidbody2D rbJugador = jugador.GetComponent<Rigidbody2D>();
             if (rbJugador != null)
-                rbJugador.velocity = Vector2.zero;
+                rbJugador.linearVelocity = Vector2.zero;
         }
     }
 
