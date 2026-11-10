@@ -29,7 +29,8 @@ public class ControladorCamara : MonoBehaviour
 
     void Start()
     {
-        camaraSecundaria.depth = camaraPrincipal.depth + 1;
+        if (camaraPrincipal != null && camaraSecundaria != null)
+            camaraSecundaria.depth = camaraPrincipal.depth + 1;
     }
 
     public void ShakeDaño(Vector2 direccion)
