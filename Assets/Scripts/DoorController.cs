@@ -64,7 +64,7 @@ public class DoorController : MonoBehaviour
         
         if (!_opened)
         {
-            Debug.Log("[DoorController] La puerta no est· abierta (_opened = false)");
+            Debug.Log("[DoorController] La puerta no est√° abierta (_opened = false)");
             return;
         }
 

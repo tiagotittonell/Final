@@ -21,14 +21,14 @@ public class JefeCaminra_Behaviour : StateMachineBehaviour
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        rb.velocity = new Vector2(velocidadMovimiento, rb.velocity.y) * animator.transform.right;
+        rb.linearVelocity = new Vector2(velocidadMovimiento, rb.linearVelocity.y) * animator.transform.right;
 
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        rb.velocity = new Vector2(0, rb.velocity.y);
+        rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()

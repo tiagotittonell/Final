@@ -6,7 +6,7 @@ public class EnemyClearDoorController : MonoBehaviour
     [Header("Enemies (asignar por Inspector)")]
     [SerializeField] private List<GameObject> enemies = new List<GameObject>();
 
-    [Header("Almas (emparejar por índice con Enemies)")]
+    [Header("Almas (emparejar por Ã­ndice con Enemies)")]
     [SerializeField] private List<SoulController> souls = new List<SoulController>();
 
     [Header("Door")]
@@ -64,7 +64,7 @@ public class EnemyClearDoorController : MonoBehaviour
         }
     }
 
-    // Por si querés setear enemigos por código
+    // Por si querÃ©s setear enemigos por cÃ³digo
     public void SetEnemies(List<GameObject> newEnemies)
     {
         enemies = newEnemies;

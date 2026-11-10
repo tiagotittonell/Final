@@ -36,7 +36,7 @@ public class ControladorNiVELES : MonoBehaviour
         // Desactivar el nivel actual
         niveles[indiceActual].SetActive(false);
 
-        // Incrementar el índice o volver al primero si estamos en el último
+        // Incrementar el Ã­ndice o volver al primero si estamos en el Ãºltimo
         indiceActual = (indiceActual + 1) % niveles.Count;
 
         // Activar el siguiente nivel

@@ -177,7 +177,7 @@ public class EnemyFlySkull : EnemigoBase
 
         if (rb != null)
         {
-            rb.velocity = Vector2.zero;
+            rb.linearVelocity = Vector2.zero;
             rb.gravityScale = sleepGravity;
         }
 
@@ -203,7 +203,7 @@ public class EnemyFlySkull : EnemigoBase
         if (rb != null)
         {
             rb.gravityScale = 0f;
-            rb.velocity = Vector2.zero;
+            rb.linearVelocity = Vector2.zero;
             rb.constraints = _defaultConstraints;
         }
 
@@ -230,14 +230,14 @@ public class EnemyFlySkull : EnemigoBase
         _shotsBeforeSleep = Random.Range(3, 6);
     }
 
-    public override void TomarDaño(float daño)
+    public override void TomarDaÃ±o(float daÃ±o)
     {
         if (estaMuerto) return;
         if (!estaDormido) return;
 
-        base.TomarDaño(daño);
+        base.TomarDaÃ±o(daÃ±o);
 
-        vida -= daño;
+        vida -= daÃ±o;
 
         if (vida > 0)
         {
@@ -262,7 +262,7 @@ public class EnemyFlySkull : EnemigoBase
 
         if (rb != null)
         {
-            rb.velocity = Vector2.zero;
+            rb.linearVelocity = Vector2.zero;
             rb.isKinematic = true;
         }
 

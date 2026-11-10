@@ -7,7 +7,7 @@ public class ControladorPuzzleAnimales : MonoBehaviour
     [Header("Botones (arrastrar los 6 Image GameObjects en orden 0-5)")]
     [SerializeField] private BotonAnimalPuzzle[] botones;
 
-    [Header("Secuencia correcta — IDs del 0 al 5, exactamente 4 valores")]
+    [Header("Secuencia correcta â€” IDs del 0 al 5, exactamente 4 valores")]
     [SerializeField] private int[] solucion = { 0, 2, 4, 1 };
 
     [Header("Delay antes de resetear tras error (segundos)")]
@@ -83,7 +83,7 @@ public class ControladorPuzzleAnimales : MonoBehaviour
         foreach (var b in botones)
             b?.SetBloqueado(true);
 
-        Debug.Log("[PuzzleAnimales] ¡Puzzle resuelto!");
+        Debug.Log("[PuzzleAnimales] Â¡Puzzle resuelto!");
         OnResueltoEvento?.Invoke();
         onPuzzleResuelto?.Invoke();
     }

@@ -27,7 +27,7 @@ public class Enemigo : EnemigoBase
 
     [SerializeField] private float radioAtaque;
 
-    [SerializeField] private float dañoAtaque;
+    [SerializeField] private float daÃ±oAtaque;
 
     [SerializeField] private float distanciaAtaque = 2f;
 
@@ -59,7 +59,7 @@ public class Enemigo : EnemigoBase
         animator.SetFloat("DistanciaJugador", distanciaParaAnimador);
         barraVida.gameObject.SetActive(distanciaJugador <= distanciaVisibilidad);
 
-        if (Mathf.Abs(rb.velocity.x) > 0.01f)
+        if (Mathf.Abs(rb.linearVelocity.x) > 0.01f)
         {
             if (Mathf.Abs(transform.position.x - posicionXAnterior) < umbralMovimiento)
             {
@@ -82,11 +82,11 @@ public class Enemigo : EnemigoBase
         MirarJugador();
     }
         
-    public override void TomarDaño(float daño)
+    public override void TomarDaÃ±o(float daÃ±o)
     {
-        base.TomarDaño(daño);
+        base.TomarDaÃ±o(daÃ±o);
 
-        vida -= daño;
+        vida -= daÃ±o;
 
         barraVida.CambiarVidaActual(vida);
         if (vida <= 0)
@@ -134,7 +134,7 @@ public class Enemigo : EnemigoBase
         {
             if (colision.CompareTag("PJ"))
             {
-                colision.GetComponent<VidaPersonaje>().TomarDañoBarra(dañoAtaque);
+                colision.GetComponent<VidaPersonaje>().TomarDaÃ±oBarra(daÃ±oAtaque);
             }
         }
     }

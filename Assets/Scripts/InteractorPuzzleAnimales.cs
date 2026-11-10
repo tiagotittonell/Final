@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class InteractorPuzzleAnimales : MonoBehaviour
 {
-    [Header("Prefab del puzzle (arrastrá desde Project, NO desde Hierarchy)")]
+    [Header("Prefab del puzzle (arrastrÃ¡ desde Project, NO desde Hierarchy)")]
     [SerializeField] private GameObject panelPuzzle;
 
     [Header("Texto hint en escena (TextMeshProUGUI dentro de un Canvas)")]
@@ -13,7 +13,7 @@ public class InteractorPuzzleAnimales : MonoBehaviour
     [Header("Referencia al jugador")]
     [SerializeField] private MovimientoPersonaje movimientoJugador;
 
-    [Header("Tecla de interacción")]
+    [Header("Tecla de interacciÃ³n")]
     [SerializeField] private KeyCode teclaInteraccion = KeyCode.F;
 
     private bool _jugadorCerca   = false;
@@ -102,7 +102,7 @@ public class InteractorPuzzleAnimales : MonoBehaviour
         }
 
         if (!_puzzleResuelto) SetOutline(true);
-        Debug.Log("[PuzzleAnimales] Jugador dentro del trigger. Presioná F para abrir.");
+        Debug.Log("[PuzzleAnimales] Jugador dentro del trigger. PresionÃ¡ F para abrir.");
     }
 
     private void OnTriggerExit2D(Collider2D col)
@@ -134,7 +134,7 @@ public class InteractorPuzzleAnimales : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("[PuzzleAnimales] ¡panelPuzzle es null! Asigná el prefab en el Inspector.");
+            Debug.LogWarning("[PuzzleAnimales] Â¡panelPuzzle es null! AsignÃ¡ el prefab en el Inspector.");
         }
 
         if (textoHint         != null) textoHint.gameObject.SetActive(false);
@@ -166,6 +166,6 @@ public class InteractorPuzzleAnimales : MonoBehaviour
         SetOutline(false);
         Time.timeScale = 1f;
 
-        Debug.Log("[PuzzleAnimales] ? ¡Puzzle resuelto correctamente!");
+        Debug.Log("[PuzzleAnimales] ? Â¡Puzzle resuelto correctamente!");
     }
 }

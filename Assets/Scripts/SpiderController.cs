@@ -26,8 +26,8 @@ public class SpiderController : EnemigoBase
     [SerializeField] private Vector2 dimensionCajaSuelo = new Vector2(0.6f, 0.1f);
     private bool enSuelo;
 
-    // ??? TELARAÑAS ???
-    [Header("Telarañas")]
+    // ??? TELARAÃ‘AS ???
+    [Header("TelaraÃ±as")]
     [SerializeField] private string tagTelarana = "Telarana";
     [SerializeField] private float velocidadEnTelarana = 4f;
     [SerializeField] private GameObject prefabTelarana;
@@ -40,8 +40,8 @@ public class SpiderController : EnemigoBase
     private float timerCrearTelarana;
     private Vector2 puntoPatrulla;
 
-    // ??? ATAQUES DESDE TELARAÑA ???
-    [Header("Ataque Proyectil (Escupir Telaraña)")]
+    // ??? ATAQUES DESDE TELARAÃ‘A ???
+    [Header("Ataque Proyectil (Escupir TelaraÃ±a)")]
     [SerializeField] private GameObject prefabProyectil;
     [SerializeField] private Transform puntoDisparo;
     [SerializeField] private float tiempoEntreAtaques = 2.5f;
@@ -80,7 +80,7 @@ public class SpiderController : EnemigoBase
     private float pausaDespuesMelee = 0f;
     [SerializeField] private float duracionPausaMelee = 1f;
 
-    [Header("Subir a Telaraña")]
+    [Header("Subir a TelaraÃ±a")]
     [SerializeField] private float velocidadSubir = 5f;
 
     // ??? ESTADO ???
@@ -104,7 +104,7 @@ public class SpiderController : EnemigoBase
     private Slider sliderVida;
     private GameObject canvasBarraVida;
     [Header("Barra de Vida")]
-    [SerializeField] private string nombreEnemigo = "Araña Reina";
+    [SerializeField] private string nombreEnemigo = "AraÃ±a Reina";
 
     private void Awake()
     {
@@ -165,7 +165,7 @@ public class SpiderController : EnemigoBase
     }
 
     // ??????????????????????????????????????????
-    //  TELARAÑAS
+    //  TELARAÃ‘AS
     // ??????????????????????????????????????????
     private void RecolectarTelaranas()
     {
@@ -233,11 +233,11 @@ public class SpiderController : EnemigoBase
     {
         if (prefabTelarana == null)
         {
-            Debug.LogWarning("[Spider] prefabTelarana NO está asignado en el Inspector!");
+            Debug.LogWarning("[Spider] prefabTelarana NO estÃ¡ asignado en el Inspector!");
             return;
         }
 
-        // Limpiar telarañas destruidas
+        // Limpiar telaraÃ±as destruidas
         telaranas.RemoveAll(t => t == null);
 
         if (telaranas.Count == 0)
@@ -248,7 +248,7 @@ public class SpiderController : EnemigoBase
             return;
         }
 
-        // Elegir una telaraña existente al azar como referencia
+        // Elegir una telaraÃ±a existente al azar como referencia
         Transform referencia = telaranas[Random.Range(0, telaranas.Count)];
         Collider2D colRef = referencia.GetComponent<Collider2D>();
 
@@ -299,12 +299,12 @@ public class SpiderController : EnemigoBase
     }
 
     // ??????????????????????????????????????????
-    //  ESTADO: EN TELARAÑA
+    //  ESTADO: EN TELARAÃ‘A
     // ??????????????????????????????????????????
     private void LogicaTelarana()
     {
         rb.gravityScale = 0f;
-        rb.velocity = Vector2.zero;
+        rb.linearVelocity = Vector2.zero;
 
         if (pausadoPorAtaque) return;
 
@@ -392,7 +392,7 @@ public class SpiderController : EnemigoBase
         direccionEmbestida = ((Vector2)(jugador.position - transform.position)).normalized;
     }
 
-    // ??? Ataque 3: Salto arriba + caída ???
+    // ??? Ataque 3: Salto arriba + caÃ­da ???
     private void IniciarSalto()
     {
         estadoActual = Estado.Bajando;
@@ -401,7 +401,7 @@ public class SpiderController : EnemigoBase
         embistiendo = false;
         rb.gravityScale = 0f;
         timerBajando = 0f;
-        rb.velocity = Vector2.up * fuerzaSaltoArriba;
+        rb.linearVelocity = Vector2.up * fuerzaSaltoArriba;
 
         StartCoroutine(EsperarYCaer());
     }
@@ -409,9 +409,9 @@ public class SpiderController : EnemigoBase
     private IEnumerator EsperarYCaer()
     {
         yield return new WaitForSeconds(0.8f);
-        rb.velocity = Vector2.zero;
+        rb.linearVelocity = Vector2.zero;
         posicionObjetivoSalto = jugador.position;
-        // Posicionar la araña justo encima de la posición capturada del jugador
+        // Posicionar la araÃ±a justo encima de la posiciÃ³n capturada del jugador
         transform.position = new Vector2(posicionObjetivoSalto.x, transform.position.y);
         yield return new WaitForSeconds(0.3f);
         cayendo = true;
@@ -425,7 +425,7 @@ public class SpiderController : EnemigoBase
     {
         timerBajando += Time.deltaTime;
 
-        // Seguridad: si lleva demasiado tiempo bajando, forzar transición
+        // Seguridad: si lleva demasiado tiempo bajando, forzar transiciÃ³n
         if (timerBajando > 4f)
         {
             embistiendo = false;
@@ -437,7 +437,7 @@ public class SpiderController : EnemigoBase
 
         if (embistiendo)
         {
-            rb.velocity = direccionEmbestida * velocidadEmbestida;
+            rb.linearVelocity = direccionEmbestida * velocidadEmbestida;
 
             if (enSuelo)
             {
@@ -450,7 +450,7 @@ public class SpiderController : EnemigoBase
             if (cayendo)
             {
                 // Caer recto sin moverse horizontalmente
-                rb.velocity = new Vector2(0f, -velocidadCaida);
+                rb.linearVelocity = new Vector2(0f, -velocidadCaida);
 
                 if (enSuelo)
                 {
@@ -475,7 +475,7 @@ public class SpiderController : EnemigoBase
             if (col.CompareTag(tagJugador))
             {
                 var hp = col.GetComponent<VidaPersonaje>();
-                if (hp != null) hp.TomarDañoBarra(danoCaida);
+                if (hp != null) hp.TomarDaÃ±oBarra(danoCaida);
             }
         }
     }
@@ -487,7 +487,7 @@ public class SpiderController : EnemigoBase
     {
         estadoActual = Estado.EnSuelo;
         rb.gravityScale = 3f;
-        rb.velocity = Vector2.zero;
+        rb.linearVelocity = Vector2.zero;
         timerSuelo = tiempoEnSuelo;
         timerMelee = 0f;
         timerCrearTelaranaEnBorde = 0f;
@@ -506,7 +506,7 @@ public class SpiderController : EnemigoBase
         if (pausaDespuesMelee > 0f)
         {
             pausaDespuesMelee -= Time.deltaTime;
-            rb.velocity = new Vector2(0f, rb.velocity.y);
+            rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
             if (animator != null) animator.SetBool(AnimWalk, false);
             return;
         }
@@ -515,14 +515,14 @@ public class SpiderController : EnemigoBase
 
         if (distanciaX <= distanciaMelee && timerMelee <= 0f)
         {
-            rb.velocity = new Vector2(0f, rb.velocity.y);
+            rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
             AtaqueMelee();
             timerMelee = cooldownMelee;
             pausaDespuesMelee = duracionPausaMelee;
         }
         else if (timerMelee > 0f)
         {
-            rb.velocity = new Vector2(0f, rb.velocity.y);
+            rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
             if (animator != null) animator.SetBool(AnimWalk, false);
         }
         else
@@ -533,7 +533,7 @@ public class SpiderController : EnemigoBase
         timerMelee -= Time.deltaTime;
 
         if (animator != null)
-            animator.SetBool(AnimWalk, Mathf.Abs(rb.velocity.x) > 0.1f);
+            animator.SetBool(AnimWalk, Mathf.Abs(rb.linearVelocity.x) > 0.1f);
     }
 
     private bool ObtenerLimitesTelaranas(out float minX, out float maxX)
@@ -569,7 +569,7 @@ public class SpiderController : EnemigoBase
 
             if (enBorde)
             {
-                rb.velocity = new Vector2(0f, rb.velocity.y);
+                rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
                 timerCrearTelaranaEnBorde += Time.deltaTime;
                 if (timerCrearTelaranaEnBorde >= intervaloTelaranaEnBorde)
                 {
@@ -581,7 +581,7 @@ public class SpiderController : EnemigoBase
         }
 
         timerCrearTelaranaEnBorde = 0f;
-        rb.velocity = new Vector2(dir * velocidadCaminar, rb.velocity.y);
+        rb.linearVelocity = new Vector2(dir * velocidadCaminar, rb.linearVelocity.y);
     }
 
     private void AtaqueMelee()
@@ -602,7 +602,7 @@ public class SpiderController : EnemigoBase
             if (col.CompareTag(tagJugador))
             {
                 var hp = col.GetComponent<VidaPersonaje>();
-                if (hp != null) hp.TomarDañoBarra(danoMelee);
+                if (hp != null) hp.TomarDaÃ±oBarra(danoMelee);
             }
         }
     }
@@ -614,7 +614,7 @@ public class SpiderController : EnemigoBase
     {
         estadoActual = Estado.Subiendo;
         rb.gravityScale = 0f;
-        rb.velocity = Vector2.zero;
+        rb.linearVelocity = Vector2.zero;
 
         if (animator != null) animator.SetBool(AnimWalk, false);
 
@@ -646,7 +646,7 @@ public class SpiderController : EnemigoBase
     }
 
     // ??????????????????????????????????????????
-    //  BARRA DE VIDA (creada por código)
+    //  BARRA DE VIDA (creada por cÃ³digo)
     // ??????????????????????????????????????????
     private void CrearBarraDeVida()
     {
@@ -660,7 +660,7 @@ public class SpiderController : EnemigoBase
         scaler.referenceResolution = new Vector2(1920f, 1080f);
         canvasBarraVida.AddComponent<GraphicRaycaster>();
 
-        // Slider — ocupa ~7/9 del ancho de pantalla, centrado abajo
+        // Slider â€” ocupa ~7/9 del ancho de pantalla, centrado abajo
         // 7/9 = 0.777... ? anchors de 0.111 a 0.888
         GameObject sliderObj = new GameObject("SliderVidaSpider");
         sliderObj.transform.SetParent(canvasBarraVida.transform, false);
@@ -718,7 +718,7 @@ public class SpiderController : EnemigoBase
 
         sliderVida.fillRect = fillRect;
 
-        // Nombre del enemigo — centrado dentro de la barra
+        // Nombre del enemigo â€” centrado dentro de la barra
         GameObject textObj = new GameObject("TextoNombreBoss");
         textObj.transform.SetParent(sliderObj.transform, false);
         Text texto = textObj.AddComponent<Text>();
@@ -739,15 +739,15 @@ public class SpiderController : EnemigoBase
     }
 
     // ??????????????????????????????????????????
-    //  DAÑO Y MUERTE
+    //  DAÃ‘O Y MUERTE
     // ??????????????????????????????????????????
-    public override void TomarDaño(float daño)
+    public override void TomarDaÃ±o(float daÃ±o)
     {
         if (estaMuerto) return;
 
-        base.TomarDaño(daño);
+        base.TomarDaÃ±o(daÃ±o);
 
-        vida -= daño;
+        vida -= daÃ±o;
         if (sliderVida != null) sliderVida.value = vida;
 
         if (vida <= 0f)
@@ -759,13 +759,13 @@ public class SpiderController : EnemigoBase
             embistiendo = false;
             saltando = false;
             cayendo = false;
-            rb.velocity = Vector2.zero;
+            rb.linearVelocity = Vector2.zero;
             rb.gravityScale = 3f;
             if (animator != null) animator.SetTrigger(AnimDeath);
         }
     }
 
-    // Llamar desde Animation Event en el último frame de SpiderDeath
+    // Llamar desde Animation Event en el Ãºltimo frame de SpiderDeath
     public void EventoMuerte()
     {
         if (canvasBarraVida != null) Destroy(canvasBarraVida);
@@ -773,7 +773,7 @@ public class SpiderController : EnemigoBase
     }
 
     // ??????????????????????????????????????????
-    //  COLISIÓN (daño de embestida)
+    //  COLISIÃ“N (daÃ±o de embestida)
     // ??????????????????????????????????????????
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -782,14 +782,14 @@ public class SpiderController : EnemigoBase
         if (embistiendo)
         {
             var hp = collision.collider.GetComponent<VidaPersonaje>();
-            if (hp != null) hp.TomarDañoBarra(danoEmbestida);
+            if (hp != null) hp.TomarDaÃ±oBarra(danoEmbestida);
             embistiendo = false;
             EntrarEstadoSuelo();
         }
         else if (saltando && cayendo)
         {
             var hp = collision.collider.GetComponent<VidaPersonaje>();
-            if (hp != null) hp.TomarDañoBarra(danoCaida);
+            if (hp != null) hp.TomarDaÃ±oBarra(danoCaida);
             saltando = false;
             cayendo = false;
             EntrarEstadoSuelo();

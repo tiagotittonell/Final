@@ -34,7 +34,7 @@ public class DummyBrekeableTutorial2 : MonoBehaviour
         }
     }
 
-    public void ReceiveHit(float daño = 200f)
+    public void ReceiveHit(float daÃ±o = 200f)
     {
         if (cayendo) return;
 
@@ -86,7 +86,7 @@ public class DummyBrekeableTutorial2 : MonoBehaviour
         {
             rb.isKinematic = false;
             rb.gravityScale = gravityScale;
-            rb.angularDrag = frenradoRotacion;
+            rb.angularDamping = frenradoRotacion;
             rb.angularVelocity = Random.Range(-fuerzaRotacion, fuerzaRotacion);
         }
 

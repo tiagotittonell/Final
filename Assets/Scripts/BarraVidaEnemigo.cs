@@ -9,7 +9,7 @@ public class BarraVidaEnemigo : MonoBehaviour
     [SerializeField] private string nombreEnemigo  = "Enemy";
     [SerializeField] private TMP_FontAsset fuente;
     [SerializeField] private Color colorTexto      = Color.white;
-    public float tamañoFuente    = 10f; 
+    public float tamaÃ±oFuente    = 10f;
 
     [Header("Barra")]
     [SerializeField] private Color colorRelleno    = new Color(0.85f, 0.15f, 0.15f);
@@ -79,7 +79,7 @@ public class BarraVidaEnemigo : MonoBehaviour
         float bw  = anchoTotal    / Escala;   
         float bh  = altoBarra     / Escala;   
         float bd  = grosorBorde   / Escala;   
-        float th  = tamañoFuente  / Escala;   
+        float th  = tamaÃ±oFuente  / Escala;
         float gap = 5f;                     
 
         float totalW = bw + bd * 2f;
@@ -123,10 +123,10 @@ public class BarraVidaEnemigo : MonoBehaviour
         textGO.transform.SetParent(cRT, false);
         var tmp                = textGO.AddComponent<TextMeshProUGUI>();
         tmp.text               = nombreEnemigo;
-        tmp.fontSize           = tamañoFuente / Escala;
+        tmp.fontSize           = tamaÃ±oFuente / Escala;
         tmp.color              = colorTexto;
         tmp.alignment          = TextAlignmentOptions.Center;
-        tmp.enableWordWrapping = false;
+        tmp.textWrappingMode = TextWrappingModes.NoWrap;
         tmp.overflowMode       = TextOverflowModes.Overflow;
         if (fuente != null) tmp.font = fuente;
 

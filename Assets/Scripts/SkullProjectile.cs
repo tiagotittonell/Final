@@ -59,7 +59,7 @@
 //        {
 //            var hp = other.GetComponent<VidaPersonaje>();
 //            if (hp != null)
-//                hp.TomarDaÒoBarra(damage);
+//                hp.TomarDa√±oBarra(damage);
 
 //            Destroy(gameObject);
 //            return;
@@ -97,7 +97,7 @@ public class SkullProjectile : MonoBehaviour
 
     [Header("Rotation")]
     [SerializeField] private bool rotateToDirection = true;
-    [SerializeField] private float spriteAngleOffset = 0f; // si tu sprite ìmiraî a otra direcciÛn, ajusta ac· (ej: 90, -90, 180)
+    [SerializeField] private float spriteAngleOffset = 0f; // si tu sprite ‚Äúmira‚Äù a otra direcci√≥n, ajusta ac√° (ej: 90, -90, 180)
 
     private Vector2 _dir;
 
@@ -143,7 +143,7 @@ public class SkullProjectile : MonoBehaviour
         {
             var hp = other.GetComponent<VidaPersonaje>();
             if (hp != null)
-                hp.TomarDaÒoBarra(damage);
+                hp.TomarDa√±oBarra(damage);
 
             Destroy(gameObject);
             return;

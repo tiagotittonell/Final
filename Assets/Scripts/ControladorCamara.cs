@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Cinemachine;
+using Unity.Cinemachine;
 
 [RequireComponent(typeof(CinemachineImpulseSource))]
 public class ControladorCamara : MonoBehaviour
@@ -12,7 +12,7 @@ public class ControladorCamara : MonoBehaviour
     public Camera camaraSecundaria;
 
     [Header("Shake")]
-    [SerializeField] private float fuerzaShakeDaño = 1.5f;
+    [SerializeField] private float fuerzaShakeDaÃ±o = 1.5f;
     [SerializeField] private float fuerzaShakeGolpe = 0.6f;
 
     private CinemachineImpulseSource impulseSource;
@@ -33,13 +33,13 @@ public class ControladorCamara : MonoBehaviour
             camaraSecundaria.depth = camaraPrincipal.depth + 1;
     }
 
-    public void ShakeDaño(Vector2 direccion)
+    public void ShakeDaÃ±o(Vector2 direccion)
     {
-        impulseSource.GenerateImpulse(direccion * fuerzaShakeDaño);
+        impulseSource.GenerateImpulseWithVelocity(direccion * fuerzaShakeDaÃ±o);
     }
 
     public void ShakeGolpe(Vector2 direccion)
     {
-        impulseSource.GenerateImpulse(direccion * fuerzaShakeGolpe);
+        impulseSource.GenerateImpulseWithVelocity(direccion * fuerzaShakeGolpe);
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class HabilidadEnemigo : MonoBehaviour
 {
-    [SerializeField] private float daño;
+    [SerializeField] private float daÃ±o;
 
     [SerializeField] private Vector2 dimensionCaja;
 
@@ -26,7 +26,7 @@ public class HabilidadEnemigo : MonoBehaviour
         {
             if (colisiones.CompareTag("PJ"))
             {
-                colisiones.GetComponent<VidaPersonaje>().TomarDañoBarra(daño);
+                colisiones.GetComponent<VidaPersonaje>().TomarDaÃ±oBarra(daÃ±o);
             }
         }
     }

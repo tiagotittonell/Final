@@ -2,10 +2,10 @@ using UnityEngine;
 
 public class ObjectDamage : MonoBehaviour
 {
-    [Header("Daño que aplica el objeto")]
+    [Header("DaÃ±o que aplica el objeto")]
     [SerializeField] private int damage = 25;
 
-    [Header("Tipo de detección")]
+    [Header("Tipo de detecciÃ³n")]
     [SerializeField] private bool useTrigger = true;
     [SerializeField] private bool useCollision = false;
 
@@ -21,8 +21,8 @@ public class ObjectDamage : MonoBehaviour
             {
                 Vector2 direccionGolpe = (other.transform.position - transform.position).normalized;
 
-                //vida.TomarDaños(damage, direccionGolpe);
-                vida.TomarDañoBarra(damage);
+                //vida.TomarDaÃ±os(damage, direccionGolpe);
+                vida.TomarDaÃ±oBarra(damage);
             }
         }
     }
@@ -39,8 +39,8 @@ public class ObjectDamage : MonoBehaviour
             {
                 Vector2 direccionGolpe = (collision.transform.position - transform.position).normalized;
 
-                //vida.TomarDaños(damage, direccionGolpe);
-                vida.TomarDañoBarra(damage);
+                //vida.TomarDaÃ±os(damage, direccionGolpe);
+                vida.TomarDaÃ±oBarra(damage);
             }
         }
     }
